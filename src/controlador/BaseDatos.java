@@ -16,9 +16,9 @@ public class BaseDatos {
 
     private Connection conexion = null;
     private static String user = "root";
-    private static String password = "CuartoPiso4";
+    private static String password = "root";
     private String puerto = "3306";
-    private static String db = "cajeroautomatico";
+    private static String db = "cajeroprofe";
     private String host = "localhost";
 
    

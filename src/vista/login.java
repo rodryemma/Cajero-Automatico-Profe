@@ -148,6 +148,8 @@ public class login extends javax.swing.JFrame {
         //Obtener texto de contraseña
         String pass = textPass.getText();
         //System.out.println(pass);
+        
+        
     }//GEN-LAST:event_ingresarBotActionPerformed
 
     private void CerrarBottActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBottActionPerformed
