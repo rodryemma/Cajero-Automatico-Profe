@@ -10,7 +10,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -54,7 +53,7 @@ public class Pago implements Serializable {
         @JoinColumn(name = "idcuenta", referencedColumnName = "idcuenta", insertable = false, updatable = false)
         , @JoinColumn(name = "idusuario", referencedColumnName = "idusuario", insertable = false, updatable = false)
         , @JoinColumn(name = "idbanco", referencedColumnName = "idbanco", insertable = false, updatable = false)})
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Cuenta cuenta;
 
     public Pago() {

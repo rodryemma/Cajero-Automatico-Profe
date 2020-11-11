@@ -20,6 +20,7 @@ public class BaseDatos {
     private String puerto = "3306";
     private static String db = "cajeroprofe";
     private String host = "localhost";
+    private static String zonakey = "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
    
     public static String getUser() {
@@ -51,7 +52,8 @@ public class BaseDatos {
             //si la conexion falla trabajo con la base de datos local
             //primera opcion que el estadoConexion sea true por ende hay internet, se conecta a la base de datos de internet
 //            if (estadoConexion) {
-            String urlConexion = "jdbc:mysql://" + host + ":" + puerto + "/" + db;
+            String urlConexion = "jdbc:mysql://" + host + ":" + puerto + "/" + db+ zonakey; 
+                                //jdbc:mysql://localhost:3306/cajeroprofe?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true  
 //                System.out.println(urlConexion);
 //            String urlConexion = "jdbc:mysql://" + host + "," + user + "," + password + "," + db;
             conexion = DriverManager.getConnection(urlConexion, user, password);

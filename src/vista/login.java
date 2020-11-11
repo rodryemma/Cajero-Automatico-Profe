@@ -5,8 +5,12 @@
  */
 package vista;
 
+import controlador.ControlUsuarios;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import modelo.Usuario;
 
 /**
  *
@@ -31,18 +35,18 @@ public class login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelInicioSesion = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         textUsuario = new javax.swing.JTextField();
         textPass = new javax.swing.JPasswordField();
         CerrarBott = new javax.swing.JButton();
         ingresarBot = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Inicio de Sesion");
+        jPanelInicioSesion.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel2.setText("Usuario");
 
@@ -75,53 +79,73 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Inicio de Sesion");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel4)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelInicioSesionLayout = new javax.swing.GroupLayout(jPanelInicioSesion);
         jPanelInicioSesion.setLayout(jPanelInicioSesionLayout);
         jPanelInicioSesionLayout.setHorizontalGroup(
             jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
                 .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInicioSesionLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(27, 27, 27)
+                        .addComponent(textUsuario))
                     .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textPass))
-                    .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(ingresarBot)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(CerrarBott)
-                        .addGap(31, 31, 31))
-                    .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(textUsuario)))))
+                        .addComponent(textPass)))
                 .addContainerGap())
+            .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(ingresarBot)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CerrarBott)
+                .addGap(40, 40, 40))
         );
         jPanelInicioSesionLayout.setVerticalGroup(
             jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(32, 32, 32)
+                    .addComponent(jLabel2)
+                    .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(textPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ingresarBot)
-                    .addComponent(CerrarBott)))
+                    .addComponent(CerrarBott))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,7 +154,7 @@ public class login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,26 +165,58 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarBotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBotActionPerformed
-       
+        
         //Obtener texto de ususario
-        String usuario = textUsuario.getText();
+        String usuarioVist = textUsuario.getText();
         //System.out.println(usuario);
         //Obtener texto de contraseña
-        String pass = textPass.getText();
+        String passVist = textPass.getText();
         //System.out.println(pass);
-        
-        
+
+        //creamos un objeto usuario para dejar guardado lo introducido en el txtVista
+        Usuario usu = new Usuario();
+        usu.setUsuario(usuarioVist);
+        usu.setPassword(passVist);
+
+        //se arma la tabla con el constructor
+        ControlUsuarios cu = new ControlUsuarios();
+
+        //se carga la tabla segun lo pedido
+        DefaultTableModel listausuario = cu.validarUsuario(usu);
+
+        //se verifica que sea correcto el pass del usuario
+        //contamos las columnas creadas, si es cero es q no existe el ussuario
+        int nroFila = listausuario.getRowCount();
+        if (nroFila == 0) {
+            JOptionPane.showMessageDialog(this, "no hay usuario registrado");
+        } else {
+            if (listausuario.getValueAt(0, 2).toString().equals(usu.getPassword())) {
+                this.setVisible(false);
+                inicio ini = new inicio();
+                ini.setVisible(true);
+            } else {
+                   //Crar clase estatica para contador
+               /* if (cont >= 3) {
+                    System.out.println("cuenta bloqueada");
+                }
+                cont += 1;
+                System.out.println(cont);*/
+                JOptionPane.showMessageDialog(this, "No coincide la contraseña");
+
+            }
+        }
+
     }//GEN-LAST:event_ingresarBotActionPerformed
 
     private void CerrarBottActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBottActionPerformed
         login inicio = (login) SwingUtilities.getWindowAncestor(jPanelInicioSesion);
         //inicio.setVisible(false);
         inicio.dispose();
-       
+
     }//GEN-LAST:event_CerrarBottActionPerformed
 
     private void textUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsuarioActionPerformed
-       
+
     }//GEN-LAST:event_textUsuarioActionPerformed
 
     private void textPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPassActionPerformed
@@ -205,9 +261,10 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CerrarBott;
     private javax.swing.JButton ingresarBot;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelInicioSesion;
     private javax.swing.JPasswordField textPass;
     private javax.swing.JTextField textUsuario;
