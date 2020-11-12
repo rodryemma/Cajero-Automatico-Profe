@@ -6,6 +6,8 @@
 package vista;
 
 import controlador.ControlUsuarios;
+import controlador.contador;
+import controlador.modificarUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -165,7 +167,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ingresarBotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBotActionPerformed
-        
+
         //Obtener texto de ususario
         String usuarioVist = textUsuario.getText();
         //System.out.println(usuario);
@@ -195,12 +197,18 @@ public class login extends javax.swing.JFrame {
                 inicio ini = new inicio();
                 ini.setVisible(true);
             } else {
-                   //Crar clase estatica para contador
-               /* if (cont >= 3) {
-                    System.out.println("cuenta bloqueada");
+                //Crar clase estatica para contador 
+                contador cont = new contador();
+                System.out.println(contador.getContador());
+                if (contador.getContador() >= 3) {
+                    
+                    String idcuenta = listausuario.getValueAt(0, 0).toString();
+                    modificarUsuarios modUsu = new modificarUsuarios();
+                    modUsu.modifBannedFalso(idcuenta);
+                    JOptionPane.showMessageDialog(this, "Cuenta n°: "+ listausuario.getValueAt(0, 0).toString()+" bloqueada. Por favor Comunicarse con gestion" );
+                    cerrarPrograma();
                 }
-                cont += 1;
-                System.out.println(cont);*/
+
                 JOptionPane.showMessageDialog(this, "No coincide la contraseña");
 
             }
@@ -208,6 +216,9 @@ public class login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ingresarBotActionPerformed
 
+    private void cerrarPrograma(){
+        System.exit(0);
+    }
     private void CerrarBottActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarBottActionPerformed
         login inicio = (login) SwingUtilities.getWindowAncestor(jPanelInicioSesion);
         //inicio.setVisible(false);
