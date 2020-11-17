@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.Buscador;
 import controlador.ControlUsuarios;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuario;
@@ -45,7 +46,7 @@ public class inicio extends javax.swing.JFrame {
         bancoNombre = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         bottTransferencia = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botMovimiento = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         txtBanco = new javax.swing.JLabel();
@@ -119,7 +120,12 @@ public class inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        botMovimiento.setText("Movimiento");
+        botMovimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botMovimientoActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -137,7 +143,7 @@ public class inicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -146,7 +152,7 @@ public class inicio extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bottTransferencia)
-                    .addComponent(jButton2))
+                    .addComponent(botMovimiento))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -202,11 +208,14 @@ public class inicio extends javax.swing.JFrame {
 
     public void iniciatxt(DefaultTableModel usuario){
         Usuario usu = new Usuario();
-        System.out.println(usuario.getValueAt(0, 5).toString());
+        Buscador bu = new Buscador();
+        //System.out.println(usuario.getValueAt(0, 5).toString());
+        //Se cargan los datos del usuario en la ventana de inicio
         txtNombre.setText(usuario.getValueAt(0, 5).toString());
         txtApellido.setText(usuario.getValueAt(0, 6).toString());
         txtNroCuenta.setText("Nro "+usuario.getValueAt(0, 0).toString());
-        txtBanco.setText("Banco ");
+        //buscamos el banco asociado a su base de dato
+        txtBanco.setText("Banco "+bu.nombreBanco(usuario.getValueAt(0, 0).toString()));
     }
     
     private void bottTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottTransferenciaActionPerformed
@@ -217,6 +226,10 @@ public class inicio extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_bottTransferenciaActionPerformed
+
+    private void botMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botMovimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botMovimientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,8 +269,8 @@ public class inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bancoNombre;
+    private javax.swing.JButton botMovimiento;
     private javax.swing.JButton bottTransferencia;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
