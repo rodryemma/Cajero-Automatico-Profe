@@ -196,6 +196,8 @@ public class login extends javax.swing.JFrame {
                 this.setVisible(false);
                 inicio ini = new inicio();
                 ini.setVisible(true);
+                ini.iniciatxt(listausuario);
+                
             } else {
                 //Crar clase estatica para contador 
                 contador cont = new contador();
