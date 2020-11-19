@@ -30,7 +30,7 @@ public class Buscador {
                     + "on banco.idbanco = cuenta.idbanco\n"
                     + "inner join cajeroprofe.usuario\n"
                     + "on cuenta.idusuario =  usuario.idusuario\n"
-                    + "where usuario.idusuario="+idusuario+";");
+                    + "where usuario.idusuario=" + idusuario + ";");
             rs.next();
             //System.out.println(rs.getString("nombre"));
             String nombreBanco = rs.getString("nombre");
@@ -48,4 +48,5 @@ public class Buscador {
 
     }
 
+  
 }
