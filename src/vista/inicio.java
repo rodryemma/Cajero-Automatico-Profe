@@ -18,10 +18,13 @@ public class inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form inicio
-     * 
+     *
      */
+    DefaultTableModel tabusuario;
+    
+    
     public inicio() {
-        
+
         initComponents();
         
     }
@@ -206,25 +209,26 @@ public class inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void iniciatxt(DefaultTableModel usuario){
+    public void iniciatxt(DefaultTableModel usuario) {
+        this.tabusuario=usuario;
         Usuario usu = new Usuario();
         Buscador bu = new Buscador();
         //System.out.println(usuario.getValueAt(0, 5).toString());
         //Se cargan los datos del usuario en la ventana de inicio
         txtNombre.setText(usuario.getValueAt(0, 5).toString());
         txtApellido.setText(usuario.getValueAt(0, 6).toString());
-        txtNroCuenta.setText("Nro "+usuario.getValueAt(0, 0).toString());
+        txtNroCuenta.setText("Nro " + usuario.getValueAt(0, 0).toString());
         //buscamos el banco asociado a su base de dato
-        txtBanco.setText("Banco "+bu.nombreBanco(usuario.getValueAt(0, 0).toString()));
+        txtBanco.setText("Banco " + bu.nombreBanco(usuario.getValueAt(0, 0).toString()));
     }
-    
+
     private void bottTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottTransferenciaActionPerformed
-        
-        
-        
-        
-        
-        
+
+        transferencia transf = new transferencia();
+        transf.setVisible(true);
+        transf.iniciaTxtTransf(this.tabusuario);
+
+
     }//GEN-LAST:event_bottTransferenciaActionPerformed
 
     private void botMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botMovimientoActionPerformed
@@ -264,7 +268,7 @@ public class inicio extends javax.swing.JFrame {
                 new inicio().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
