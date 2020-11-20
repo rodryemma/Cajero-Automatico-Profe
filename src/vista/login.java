@@ -24,6 +24,7 @@ public class login extends javax.swing.JFrame {
      * Creates new form login
      */
     public login() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -108,17 +109,14 @@ public class login extends javax.swing.JFrame {
         jPanelInicioSesionLayout.setHorizontalGroup(
             jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInicioSesionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(27, 27, 27)
                         .addComponent(textUsuario))
                     .addGroup(jPanelInicioSesionLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textPass)))

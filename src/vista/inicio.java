@@ -24,7 +24,7 @@ public class inicio extends javax.swing.JFrame {
     
     
     public inicio() {
-
+        this.setLocationRelativeTo(null);
         initComponents();
         
     }

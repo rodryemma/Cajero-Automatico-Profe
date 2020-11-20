@@ -22,6 +22,7 @@ public class transferencia extends javax.swing.JFrame {
     DefaultTableModel tabusuario;
     
     public transferencia() {
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -144,7 +145,7 @@ public class transferencia extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botCancelar)
                     .addComponent(botTransferir))
@@ -164,7 +165,7 @@ public class transferencia extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Transferencia");
 
-        jLabel7.setText("Nro Cuenta");
+        jLabel7.setText("CBU");
 
         txtNroCuenta.setEditable(false);
         txtNroCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +275,7 @@ public class transferencia extends javax.swing.JFrame {
         DefaultTableModel cuenta = cu.cuenta(usuario.getValueAt(0, 0).toString());
         
         System.out.println(cuenta.getValueAt(0, 11).toString());
-        txtNroCuenta.setText(usuario.getValueAt(0, 0).toString());
+        txtNroCuenta.setText(cuenta.getValueAt(0, 10).toString());
         txtSaldo.setText(cuenta.getValueAt(0, 11).toString()+"$ Ars");
     }
     /**
