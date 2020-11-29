@@ -9,6 +9,7 @@
     <class>modelo.Usuario</class>
     <class>modelo.Movimiento</class>
     <class>modelo.Prestamo</class>
+    <class>modelo.Destinatario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cajeroprofe?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

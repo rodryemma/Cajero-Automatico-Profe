@@ -45,6 +45,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cuenta.findByIdbanco", query = "SELECT c FROM Cuenta c WHERE c.cuentaPK.idbanco = :idbanco")})
 public class Cuenta implements Serializable {
 
+    private String usuarioalta;
+    private String usuariomodificacion;
+    private String usuariobaja;
+
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected CuentaPK cuentaPK;
@@ -56,18 +60,12 @@ public class Cuenta implements Serializable {
     @Column(name = "fechaalta")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaalta;
-    @Column(name = "usuarioalta")
-    private Integer usuarioalta;
     @Column(name = "fechamodificacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechamodificacion;
-    @Column(name = "usuariomodificacion")
-    private Integer usuariomodificacion;
     @Column(name = "fechabaja")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechabaja;
-    @Column(name = "usuariobaja")
-    private Integer usuariobaja;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
     private List<Prestamo> prestamoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
@@ -126,13 +124,6 @@ public class Cuenta implements Serializable {
         this.fechaalta = fechaalta;
     }
 
-    public Integer getUsuarioalta() {
-        return usuarioalta;
-    }
-
-    public void setUsuarioalta(Integer usuarioalta) {
-        this.usuarioalta = usuarioalta;
-    }
 
     public Date getFechamodificacion() {
         return fechamodificacion;
@@ -142,13 +133,6 @@ public class Cuenta implements Serializable {
         this.fechamodificacion = fechamodificacion;
     }
 
-    public Integer getUsuariomodificacion() {
-        return usuariomodificacion;
-    }
-
-    public void setUsuariomodificacion(Integer usuariomodificacion) {
-        this.usuariomodificacion = usuariomodificacion;
-    }
 
     public Date getFechabaja() {
         return fechabaja;
@@ -158,13 +142,6 @@ public class Cuenta implements Serializable {
         this.fechabaja = fechabaja;
     }
 
-    public Integer getUsuariobaja() {
-        return usuariobaja;
-    }
-
-    public void setUsuariobaja(Integer usuariobaja) {
-        this.usuariobaja = usuariobaja;
-    }
 
     @XmlTransient
     public List<Prestamo> getPrestamoList() {
@@ -241,6 +218,30 @@ public class Cuenta implements Serializable {
     @Override
     public String toString() {
         return "modelo.Cuenta[ cuentaPK=" + cuentaPK + " ]";
+    }
+
+    public String getUsuarioalta() {
+        return usuarioalta;
+    }
+
+    public void setUsuarioalta(String usuarioalta) {
+        this.usuarioalta = usuarioalta;
+    }
+
+    public String getUsuariomodificacion() {
+        return usuariomodificacion;
+    }
+
+    public void setUsuariomodificacion(String usuariomodificacion) {
+        this.usuariomodificacion = usuariomodificacion;
+    }
+
+    public String getUsuariobaja() {
+        return usuariobaja;
+    }
+
+    public void setUsuariobaja(String usuariobaja) {
+        this.usuariobaja = usuariobaja;
     }
     
 }

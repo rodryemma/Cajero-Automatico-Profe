@@ -12,6 +12,7 @@ public class ControlUsuarios {
     //creamos una tabla de 2 dimensiones para guardar los datos de la bd
     final DefaultTableModel listaUsuarios = new DefaultTableModel(300, 9);
     final DefaultTableModel listaCuenta = new DefaultTableModel(300, 9);
+    final DefaultTableModel listaDestinatario = new DefaultTableModel(300, 9);
 
     public DefaultTableModel validarUsuario(Usuario usuario) {
         //Establecer coenxion a base de datos
@@ -75,5 +76,37 @@ public class ControlUsuarios {
         }
 
     }
+    public DefaultTableModel destinatario (String idusuario) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        ResultSet rs;
+        //System.out.println(idusuario);
+        try {
 
+            Statement s = conx.createStatement();
+            // usamos el codigo en mysql y lo modificamos
+            rs = s.executeQuery("selected * from cajeroprofe.destinatario = '" +idusuario + "'");
+
+            GestorTabla.configuraColumnas(rs, this.listaCuenta);
+            GestorTabla.rellena(rs, this.listaCuenta);
+            //System.out.println(rs.getString("nombre"));
+
+            //cerramos conexion
+            s.close();
+            rs.close();
+            return this.listaCuenta;
+            //System.exit(0);
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            return null;
+
+        }
+
+    }
+    
+    
+    
 }

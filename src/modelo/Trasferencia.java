@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -34,6 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Trasferencia.findByDetalle", query = "SELECT t FROM Trasferencia t WHERE t.detalle = :detalle")
     , @NamedQuery(name = "Trasferencia.findByIdcuenta", query = "SELECT t FROM Trasferencia t WHERE t.trasferenciaPK.idcuenta = :idcuenta")})
 public class Trasferencia implements Serializable {
+
+    @JoinColumn(name = "iddestinatario", referencedColumnName = "iddestinatario", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Destinatario destinatario;
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -124,6 +129,14 @@ public class Trasferencia implements Serializable {
     @Override
     public String toString() {
         return "modelo.Trasferencia[ trasferenciaPK=" + trasferenciaPK + " ]";
+    }
+
+    public Destinatario getDestinatario() {
+        return destinatario;
+    }
+
+    public void setDestinatario(Destinatario destinatario) {
+        this.destinatario = destinatario;
     }
     
 }

@@ -41,6 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usuario.findByCel", query = "SELECT u FROM Usuario u WHERE u.cel = :cel")})
 public class Usuario implements Serializable {
 
+    private String banned;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +53,6 @@ public class Usuario implements Serializable {
     private String usuario;
     @Column(name = "password")
     private String password;
-    @Column(name = "banned")
-    private Short banned;
     @Column(name = "tipo")
     private String tipo;
     @Column(name = "nombre")
@@ -97,13 +97,6 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public Short getBanned() {
-        return banned;
-    }
-
-    public void setBanned(Short banned) {
-        this.banned = banned;
-    }
 
     public String getTipo() {
         return tipo;
@@ -177,6 +170,14 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "modelo.Usuario[ idusuario=" + idusuario + " ]";
+    }
+
+    public String getBanned() {
+        return banned;
+    }
+
+    public void setBanned(String banned) {
+        this.banned = banned;
     }
     
 }

@@ -142,7 +142,7 @@ public class transferencia extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel5.setText("Saldo");
+        jLabel5.setText("Saldo disponible");
 
         txtSaldo.setEditable(false);
         txtSaldo.addActionListener(new java.awt.event.ActionListener() {
