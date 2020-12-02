@@ -1,17 +1,34 @@
 
 package vista;
 
+import controlador.ControlUsuarios;
+import javax.swing.table.DefaultTableModel;
+
 
 public class AgendarCbu extends javax.swing.JFrame {
 
-   private DestinatarioTableModel model;
+ DefaultTableModel tabusuario;
+ DefaultTableModel tabcuenta;
     
     public AgendarCbu() {
+       
         initComponents();
-        
+         //refrescartabla();
         
     }
 
+    public void refrescartabla(DefaultTableModel usuario){
+    ControlUsuarios contusu = new ControlUsuarios();
+        this.tabusuario=usuario;
+        this.tabcuenta=contusu.cuenta(usuario.getValueAt(0, 0).toString());
+       // System.out.println(tabcuenta.getValueAt(0, 9).toString());
+        TablaDestinatario.setModel(contusu.destinatario(tabcuenta.getValueAt(0, 9).toString()));
+        
+        
+        
+}
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,6 +77,11 @@ public class AgendarCbu extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(TablaDestinatario);
+        if (TablaDestinatario.getColumnModel().getColumnCount() > 0) {
+            TablaDestinatario.getColumnModel().getColumn(0).setResizable(false);
+            TablaDestinatario.getColumnModel().getColumn(1).setResizable(false);
+            TablaDestinatario.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
