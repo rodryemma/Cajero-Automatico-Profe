@@ -197,14 +197,19 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     private void botSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSeleccionarActionPerformed
        
-        
+        //SE guarda la fila seleccionada de Jtable
         int fila = TablaDestinatario.getSelectedRow();
-        String seleccion =TablaDestinatario.getValueAt(fila, 0).toString();
-        String nombredesti = TablaDestinatario.getValueAt(fila, 0).toString();
-        String cbudest = TablaDestinatario.getValueAt(fila, 1).toString();
+        
+        //String seleccion =TablaDestinatario.getValueAt(fila, 0).toString();
+        //Se guarda el nombre de la tabla seleccionada
+        String nombredesti = TablaDestinatario.getValueAt(fila, 1).toString();
+        //Se guarda el CBU de la persona seleccionada
+        String cbudest = TablaDestinatario.getValueAt(fila, 0).toString();
+        //se guarda el correo de la persona seleccionada
+        String correodest = TablaDestinatario.getValueAt(fila, 2).toString();
         
         transferencia transf = new transferencia();
-        transf.cargardestinatario(nombredesti,cbudest,tabusuario);
+        transf.cargardestinatario(nombredesti,cbudest,correodest,tabusuario);
         transf.iniciaTxtTransf(tabusuario);
         transf.setVisible(true);
       
