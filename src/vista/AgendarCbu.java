@@ -5,6 +5,7 @@ import controlador.ControlUsuarios;
 import javax.swing.table.DefaultTableModel;
 
 
+
 public class AgendarCbu extends javax.swing.JFrame {
 
  DefaultTableModel tabusuario;
@@ -19,15 +20,17 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     public void refrescartabla(DefaultTableModel usuario){
     ControlUsuarios contusu = new ControlUsuarios();
+       //guardamos la tabla del usuario 
         this.tabusuario=usuario;
+        //guardamos la tabla de la cuenta del usuario
         this.tabcuenta=contusu.cuenta(usuario.getValueAt(0, 0).toString());
        // System.out.println(tabcuenta.getValueAt(0, 9).toString());
+       //mostramo la tabla del destinatario a traves de la cuenta vinculada
         TablaDestinatario.setModel(contusu.destinatario(tabcuenta.getValueAt(0, 9).toString()));
         
-        
-        
-}
     
+}
+   
     
     
     @SuppressWarnings("unchecked")
@@ -41,7 +44,7 @@ public class AgendarCbu extends javax.swing.JFrame {
         TablaDestinatario = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        botSeleccionar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -76,12 +79,9 @@ public class AgendarCbu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TablaDestinatario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TablaDestinatario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaDestinatario);
-        if (TablaDestinatario.getColumnModel().getColumnCount() > 0) {
-            TablaDestinatario.getColumnModel().getColumn(0).setResizable(false);
-            TablaDestinatario.getColumnModel().getColumn(1).setResizable(false);
-            TablaDestinatario.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,12 @@ public class AgendarCbu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Seleccionar");
+        botSeleccionar.setText("Seleccionar");
+        botSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botSeleccionarActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Cancelar");
 
@@ -100,7 +105,7 @@ public class AgendarCbu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
-                .addComponent(jButton4)
+                .addComponent(botSeleccionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addGap(176, 176, 176))
@@ -110,7 +115,7 @@ public class AgendarCbu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(botSeleccionar)
                     .addComponent(jButton5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -190,6 +195,24 @@ public class AgendarCbu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void botSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSeleccionarActionPerformed
+       
+        
+        int fila = TablaDestinatario.getSelectedRow();
+        String seleccion =TablaDestinatario.getValueAt(fila, 0).toString();
+        String nombredesti = TablaDestinatario.getValueAt(fila, 0).toString();
+        String cbudest = TablaDestinatario.getValueAt(fila, 1).toString();
+        
+        transferencia transf = new transferencia();
+        transf.cargardestinatario(nombredesti,cbudest,tabusuario);
+        transf.iniciaTxtTransf(tabusuario);
+        transf.setVisible(true);
+      
+       dispose();
+        
+        
+    }//GEN-LAST:event_botSeleccionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,10 +250,10 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDestinatario;
+    private javax.swing.JButton botSeleccionar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
