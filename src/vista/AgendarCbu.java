@@ -2,6 +2,7 @@
 package vista;
 
 import controlador.ControlUsuarios;
+import controlador.EliminarDeTabla;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -39,7 +40,7 @@ public class AgendarCbu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDestinatario = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -58,7 +59,12 @@ public class AgendarCbu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Eliminar");
+        botEliminar.setText("Eliminar");
+        botEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botEliminarActionPerformed(evt);
+            }
+        });
 
         TablaDestinatario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,7 +137,7 @@ public class AgendarCbu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -145,7 +151,7 @@ public class AgendarCbu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(12, 12, 12)
-                        .addComponent(jButton3))
+                        .addComponent(botEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,11 +218,42 @@ public class AgendarCbu extends javax.swing.JFrame {
         transf.cargardestinatario(nombredesti,cbudest,correodest,tabusuario);
         transf.iniciaTxtTransf(tabusuario);
         transf.setVisible(true);
-      
-       dispose();
+        
+       //dispose();
         
         
     }//GEN-LAST:event_botSeleccionarActionPerformed
+
+    private void botEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarActionPerformed
+       //Creamos una instancia para traer la tabla completa de Destinaratio del cliente 
+        ControlUsuarios contusu = new ControlUsuarios();
+        //enviamos el id del cliente
+        DefaultTableModel TablaDest = contusu.destinatarioCompleta(tabcuenta.getValueAt(0, 9).toString());
+        
+         //SE guarda la fila seleccionada de Jtable pero solo tiene 3 campos
+        int fila = TablaDestinatario.getSelectedRow();
+        
+                
+        //Se guarda el id Destinaratio de la persona seleccionada
+        String idDestinaratio = TablaDest.getValueAt(fila, 0).toString();
+        //se guarda el idCuenta de la persona seleccionada
+        String idCuenta = TablaDest.getValueAt(fila, 4).toString();
+        
+        //se envia a eliminar con idCuenta e IdDestinatario
+        EliminarDeTabla eliTab = new EliminarDeTabla();
+        eliTab.EliminarDedestinatario(idCuenta, idDestinaratio);
+        
+        System.out.println("idDestinatario:  "+idDestinaratio + "  --  IDcuenta:  "+idCuenta);
+        
+       //se refresca tabla para ver los datos actualizados
+       refrescartabla(tabusuario);
+       
+        
+      
+       
+        
+        
+    }//GEN-LAST:event_botEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,10 +292,10 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDestinatario;
+    private javax.swing.JButton botEliminar;
     private javax.swing.JButton botSeleccionar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

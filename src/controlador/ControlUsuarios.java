@@ -107,6 +107,39 @@ public class ControlUsuarios {
 
     }
     
+   
+    
+    
+    public DefaultTableModel destinatarioCompleta (String idcuenta) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        ResultSet rs;
+        //System.out.println(idusuario);
+        try {
+
+            Statement s = conx.createStatement();
+            // usamos el codigo en mysql y lo modificamos
+            rs = s.executeQuery("select * from cajeroprofe.destinatario where idcuenta = '" +idcuenta + "'");
+
+            GestorTabla.configuraColumnas(rs, this.listaDestinatario);
+            GestorTabla.rellena(rs, this.listaDestinatario);
+            //System.out.println(rs.getString("nombre"));
+
+            //cerramos conexion
+            s.close();
+            rs.close();
+            return this.listaDestinatario;
+            //System.exit(0);
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            return null;
+
+        }
+
+    }
     
     
 }
