@@ -28,7 +28,7 @@ public class EliminarDeTabla {
             Statement s = conx.createStatement();
             //SE envia el comando para eliminar la tabla de destinatario
             //con idDestinatario e idcuenta
-            s.executeUpdate("DELETE FROM `cajeroprofe`.`destinatario` WHERE (`iddestinatario` = '"+idDestinatario+"') and (`idcuenta` = '"+idcuenta+"')" );
+            s.execute("DELETE FROM `cajeroprofe`.`destinatario` WHERE (`iddestinatario` = '"+idDestinatario+"') and (`idcuenta` = '"+idcuenta+"')" );
             
             
             s.close();
