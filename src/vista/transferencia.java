@@ -378,6 +378,7 @@ public class transferencia extends javax.swing.JFrame {
        AgendarCbu agenda = new AgendarCbu();
        agenda.setVisible(true);
        agenda.refrescartabla(tabusuario);
+       dispose();
        
        
     }//GEN-LAST:event_botBuscarDestinatarioActionPerformed

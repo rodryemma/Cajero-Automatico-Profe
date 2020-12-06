@@ -39,11 +39,11 @@ public class AgendarCbu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        botAgregar = new javax.swing.JButton();
         botEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDestinatario = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        botModificar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         botSeleccionar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -52,10 +52,10 @@ public class AgendarCbu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botAgregar.setText("Agregar");
+        botAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botAgregarActionPerformed(evt);
             }
         });
 
@@ -74,7 +74,7 @@ public class AgendarCbu extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Correo", "CBU"
+                "CBU", "Nombre", "Correo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -89,10 +89,10 @@ public class AgendarCbu extends javax.swing.JFrame {
         TablaDestinatario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaDestinatario);
 
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botModificar.setText("Modificar");
+        botModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botModificarActionPerformed(evt);
             }
         });
 
@@ -135,8 +135,8 @@ public class AgendarCbu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botAgregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -147,9 +147,9 @@ public class AgendarCbu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(botAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(botModificar)
                         .addGap(12, 12, 12)
                         .addComponent(botEliminar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,14 +192,21 @@ public class AgendarCbu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAgregarActionPerformed
+        
+        AgregarDestinatarios agreDes = new AgregarDestinatarios();
+        agreDes.setVisible(true);
+        agreDes.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(),this.tabcuenta);
+        //System.out.println(tabcuenta.getValueAt(0, 9).toString());
+        dispose();
+         
+        
+    }//GEN-LAST:event_botAgregarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModificarActionPerformed
        
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botModificarActionPerformed
 
     private void botSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSeleccionarActionPerformed
        
@@ -219,7 +226,7 @@ public class AgendarCbu extends javax.swing.JFrame {
         transf.iniciaTxtTransf(tabusuario);
         transf.setVisible(true);
         
-       //dispose();
+       dispose();
         
         
     }//GEN-LAST:event_botSeleccionarActionPerformed
@@ -292,10 +299,10 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDestinatario;
+    private javax.swing.JButton botAgregar;
     private javax.swing.JButton botEliminar;
+    private javax.swing.JButton botModificar;
     private javax.swing.JButton botSeleccionar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

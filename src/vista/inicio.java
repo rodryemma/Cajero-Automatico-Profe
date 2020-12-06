@@ -145,7 +145,7 @@ public class inicio extends javax.swing.JFrame {
                     .addComponent(bottTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -212,12 +212,13 @@ public class inicio extends javax.swing.JFrame {
     public void iniciatxt(DefaultTableModel usuario) {
         this.tabusuario=usuario;
         Usuario usu = new Usuario();
+        ControlUsuarios contusu = new ControlUsuarios();
         Buscador bu = new Buscador();
         //System.out.println(usuario.getValueAt(0, 5).toString());
         //Se cargan los datos del usuario en la ventana de inicio
         txtNombre.setText(usuario.getValueAt(0, 5).toString());
         txtApellido.setText(usuario.getValueAt(0, 6).toString());
-        txtNroCuenta.setText("Nro " + usuario.getValueAt(0, 0).toString());
+        txtNroCuenta.setText("Nro " + contusu.cuenta(usuario.getValueAt(0, 0).toString()).getValueAt(0, 9).toString());
         //buscamos el banco asociado a su base de dato
         txtBanco.setText("Banco " + bu.nombreBanco(usuario.getValueAt(0, 0).toString()));
     }
@@ -227,7 +228,7 @@ public class inicio extends javax.swing.JFrame {
         transferencia transf = new transferencia();
         transf.setVisible(true);
         transf.iniciaTxtTransf(this.tabusuario);
-
+        dispose();
 
     }//GEN-LAST:event_bottTransferenciaActionPerformed
 
