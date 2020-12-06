@@ -207,7 +207,11 @@ public class AgregarDestinatarios extends javax.swing.JFrame {
     }//GEN-LAST:event_botGuardarActionPerformed
 
     private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
-        // TODO add your handling code here:
+        AgendarCbu agenCbu = new AgendarCbu();
+        dispose();
+        agenCbu.refrescartabla(tabUsuario);
+        agenCbu.setVisible(true);
+        
     }//GEN-LAST:event_botCancelarActionPerformed
 
     

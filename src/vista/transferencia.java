@@ -23,8 +23,11 @@ public class transferencia extends javax.swing.JFrame {
     DefaultTableModel tabusuario;
     
     public transferencia() {
-        this.setLocationRelativeTo(null);
+        
         initComponents();
+        
+        //centrar ventana
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -355,6 +358,7 @@ public class transferencia extends javax.swing.JFrame {
       
       txtCbuDesti.setText(cbudest);
       txtnombreDest.setText(nombredest);
+      txtCorreoDest.setText(correodest);
     }
     
     

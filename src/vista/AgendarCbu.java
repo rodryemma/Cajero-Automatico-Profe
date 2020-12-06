@@ -15,10 +15,17 @@ public class AgendarCbu extends javax.swing.JFrame {
     public AgendarCbu() {
        
         initComponents();
+        this.setLocationRelativeTo(null);
          //refrescartabla();
+        deshabilitarbot();
         
     }
 
+    public void deshabilitarbot(){
+        botSeleccionar.setEnabled(false);
+        botEliminar.setEnabled(false);
+    }
+    
     public void refrescartabla(DefaultTableModel usuario){
     ControlUsuarios contusu = new ControlUsuarios();
        //guardamos la tabla del usuario 
@@ -87,6 +94,11 @@ public class AgendarCbu extends javax.swing.JFrame {
         });
         TablaDestinatario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TablaDestinatario.getTableHeader().setReorderingAllowed(false);
+        TablaDestinatario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDestinatarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaDestinatario);
 
         botModificar.setText("Modificar");
@@ -261,6 +273,14 @@ public class AgendarCbu extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_botEliminarActionPerformed
+
+    private void TablaDestinatarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDestinatarioMouseClicked
+        
+        //habilitaremos botones
+        botSeleccionar.setEnabled(true);
+        botEliminar.setEnabled(true);
+        
+    }//GEN-LAST:event_TablaDestinatarioMouseClicked
 
     /**
      * @param args the command line arguments
