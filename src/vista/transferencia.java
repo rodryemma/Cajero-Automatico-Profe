@@ -42,7 +42,7 @@ public class transferencia extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtMonto = new javax.swing.JTextField();
+        txtMontoTrans = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         botTransferir = new javax.swing.JButton();
         botCancelar = new javax.swing.JButton();
@@ -89,7 +89,7 @@ public class transferencia extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
-                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -98,13 +98,18 @@ public class transferencia extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         botTransferir.setText("Transferir");
+        botTransferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botTransferirActionPerformed(evt);
+            }
+        });
 
         botCancelar.setText("Cancelar");
         botCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -387,6 +392,15 @@ public class transferencia extends javax.swing.JFrame {
        
     }//GEN-LAST:event_botBuscarDestinatarioActionPerformed
 
+    private void botTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botTransferirActionPerformed
+        ControlUsuarios contUsu = new ControlUsuarios();
+        DefaultTableModel tabCuenta = contUsu.cuenta(tabusuario.getValueAt(0, 0).toString());
+        double sueldo = Double.parseDouble(tabCuenta.getValueAt(0,11).toString());
+        double transferencia = Double.parseDouble(txtMontoTrans.getText().toString());
+        System.out.println("Sueldo: "+sueldo+" - Transferir: "+transferencia);
+        
+    }//GEN-LAST:event_botTransferirActionPerformed
+
     
     public void iniciaTxtTransf(DefaultTableModel usuario){
         this.tabusuario=usuario;
@@ -396,10 +410,19 @@ public class transferencia extends javax.swing.JFrame {
        // System.out.println(cuenta.getValueAt(0, 11).toString());
         txtNroCuenta.setText(cuenta.getValueAt(0, 10).toString());
         txtSaldo.setText(cuenta.getValueAt(0, 11).toString()+"$ Ars");
+        
+        //Armar condicion para null o letras en txttranferencia
+        
+        //Armar condicion de que sea mayor el saldo que la trasnferencia
+        
+        
+        
+        
+        
+        
+        
     }
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -455,7 +478,7 @@ public class transferencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField txtCbuDesti;
     private javax.swing.JTextField txtCorreoDest;
-    private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtMontoTrans;
     private javax.swing.JTextField txtNroCuenta;
     private javax.swing.JTextField txtSaldo;
     private javax.swing.JTextField txtnombreDest;
