@@ -5,10 +5,12 @@
  */
 package vista;
 
+import controlador.AgregarDeTabla;
 import controlador.Buscador;
 import controlador.ControlUsuarios;
 import controlador.ModificarDeTabla;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
@@ -417,15 +419,19 @@ public class transferencia extends javax.swing.JFrame {
     private void botTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botTransferirActionPerformed
         ControlUsuarios contUsu = new ControlUsuarios();
         ModificarDeTabla modTabla = new ModificarDeTabla();
-        
+        AgregarDeTabla agregTab= new AgregarDeTabla();
         
         DefaultTableModel tabCuenta = contUsu.cuenta(tabusuario.getValueAt(0, 0).toString());
        
         //Guardar idusuario, idbanco y la actualizacion del saldo
+        String idcuen=tabCuenta.getValueAt(0, 9).toString();
         String idusuario=tabusuario.getValueAt(0, 0).toString();
         String idbanco=tabCuenta.getValueAt(0, 19).toString();
+        String detalle =txtDetalle.getText().toString();
         Double sueldo = Double.parseDouble(tabCuenta.getValueAt(0,11).toString());
         Double transf = Double.parseDouble(txtMontoTrans.getText().toString());
+        
+         System.out.println("IdUsuario: "+idusuario+" - IdBanco: "+idbanco+" - IdCuenta :"+idcuen);
         
         if (transf>sueldo ){
             JOptionPane.showMessageDialog(null, "Saldo insuficiente");
@@ -435,20 +441,27 @@ public class transferencia extends javax.swing.JFrame {
             modTabla.modiCuentaSaldo(idusuario, idbanco, NuevoSaldo);
             JOptionPane.showMessageDialog(null, "Transferencia Exitosa ");
             
-            
+            agregTab.AgregarTransferencia(idcuen, idDestinatario, fecha(), NuevoSaldo, detalle);
             
             
         }
         
        // System.out.println("Sueldo: "+sueldo+" - Transferir: "+transf);
-       // System.out.println("IdUsuario: "+idusuario+" - IdBanco: "+idbanco);
+       
         
         
         
     }//GEN-LAST:event_botTransferirActionPerformed
 
     
-    
+    public String fecha(){
+        Calendar c = Calendar.getInstance();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String annio = Integer.toString(c.get(Calendar.YEAR));
+            String fecha = annio+"/"+mes+"/"+dia;
+            return fecha;
+    }
     
     
     public void iniciaTxtTransf(DefaultTableModel usuario){
