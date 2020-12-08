@@ -24,6 +24,7 @@ public class AgendarCbu extends javax.swing.JFrame {
     public void deshabilitarbot(){
         botSeleccionar.setEnabled(false);
         botEliminar.setEnabled(false);
+        botModificar.setEnabled(false);
     }
     
     public void refrescartabla(DefaultTableModel usuario){
@@ -53,7 +54,7 @@ public class AgendarCbu extends javax.swing.JFrame {
         botModificar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         botSeleccionar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botCancelar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -115,7 +116,12 @@ public class AgendarCbu extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Cancelar");
+        botCancelar.setText("Cancelar");
+        botCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,7 +131,7 @@ public class AgendarCbu extends javax.swing.JFrame {
                 .addGap(122, 122, 122)
                 .addComponent(botSeleccionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(botCancelar)
                 .addGap(176, 176, 176))
         );
         jPanel2Layout.setVerticalGroup(
@@ -134,7 +140,7 @@ public class AgendarCbu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botSeleccionar)
-                    .addComponent(jButton5))
+                    .addComponent(botCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,6 +224,24 @@ public class AgendarCbu extends javax.swing.JFrame {
     private void botModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModificarActionPerformed
        
         
+        
+        //Creamos una instancia para traer la tabla completa de Destinaratio del cliente 
+        ControlUsuarios contusu = new ControlUsuarios();
+        //enviamos el id del cliente
+        DefaultTableModel TablaDest = contusu.destinatarioCompleta(tabcuenta.getValueAt(0, 9).toString());
+        
+         //SE guarda la fila seleccionada de Jtable pero solo tiene 3 campos
+        int fila = TablaDestinatario.getSelectedRow();
+     
+        ModificarDestinatario modDesti = new ModificarDestinatario();
+        modDesti.cargarTxt(fila,TablaDest,this.tabusuario);
+        modDesti.setVisible(true);
+       dispose();
+        
+       
+        
+        
+        
     }//GEN-LAST:event_botModificarActionPerformed
 
     private void botSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSeleccionarActionPerformed
@@ -262,7 +286,7 @@ public class AgendarCbu extends javax.swing.JFrame {
         EliminarDeTabla eliTab = new EliminarDeTabla();
         eliTab.EliminarDedestinatario(idCuenta, idDestinaratio);
         
-        System.out.println("idDestinatario:  "+idDestinaratio + "  --  IDcuenta:  "+idCuenta);
+        //System.out.println("idDestinatario:  "+idDestinaratio + "  --  IDcuenta:  "+idCuenta);
         
        //se refresca tabla para ver los datos actualizados
        refrescartabla(tabusuario);
@@ -279,8 +303,18 @@ public class AgendarCbu extends javax.swing.JFrame {
         //habilitaremos botones
         botSeleccionar.setEnabled(true);
         botEliminar.setEnabled(true);
+        botModificar.setEnabled(true);
         
     }//GEN-LAST:event_TablaDestinatarioMouseClicked
+
+    private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
+        transferencia trans = new transferencia();
+        dispose();
+        trans.iniciaTxtTransf(tabusuario);
+        trans.setVisible(true);
+        
+        
+    }//GEN-LAST:event_botCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,10 +354,10 @@ public class AgendarCbu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDestinatario;
     private javax.swing.JButton botAgregar;
+    private javax.swing.JButton botCancelar;
     private javax.swing.JButton botEliminar;
     private javax.swing.JButton botModificar;
     private javax.swing.JButton botSeleccionar;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

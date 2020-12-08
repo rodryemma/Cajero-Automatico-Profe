@@ -15,6 +15,8 @@ public class AgregarDestinatarios extends javax.swing.JFrame {
     
     public AgregarDestinatarios() {
         initComponents();
+         //centrar ventana
+        this.setLocationRelativeTo(null);
     }
 
     
