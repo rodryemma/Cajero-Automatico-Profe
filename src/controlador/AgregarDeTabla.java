@@ -42,4 +42,29 @@ public class AgregarDeTabla {
     }  
     
     
+      public void AgregarTransferencia (String idCuenta, String idDest, String fecha, String monto ,String detalle) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        
+        try {
+
+            Statement s = conx.createStatement();
+            //SE envia el comando para agregar una nueva la tabla de destinatario
+            //con idDestinatario e idcuenta
+            s.execute("INSERT INTO `cajeroprofe`.`trasferencia` (`fecha`, `monto`, `detalle`, `iddestinatario`, `idcuenta`) VALUES ('"+fecha+"', '"+monto+"', '"+detalle+"', '"+idDest+"', '"+idCuenta+"');" );
+            //INSERT INTO `cajeroprofe`.`trasferencia` (`fecha`, `monto`, `detalle`, `iddestinatario`, `idcuenta`) VALUES ('2020-12-08', '100', '123', '4', '3');
+            
+            s.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            
+
+        }
+
+    }  
+    
+    
 }
