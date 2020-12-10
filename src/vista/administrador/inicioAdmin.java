@@ -18,7 +18,9 @@ public class inicioAdmin extends javax.swing.JFrame {
     
     
     public inicioAdmin() {
+        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
    
@@ -70,6 +72,11 @@ public class inicioAdmin extends javax.swing.JFrame {
         botAbm.setText("Abm Cuentas");
 
         botBanco.setText("Abm Bancos");
+        botBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botBancoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,8 +152,20 @@ public class inicioAdmin extends javax.swing.JFrame {
     
     
     private void botUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botUsuarioActionPerformed
-        // TODO add your handling code here:
+       gestionAbm gestBco = new gestionAbm();
+       gestBco.refrescartablaUsuario(tabUsuario);
+       this.setVisible(false);
+       gestBco.setVisible(true);
+       
+        
     }//GEN-LAST:event_botUsuarioActionPerformed
+
+    private void botBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBancoActionPerformed
+        gestionAbm gestBco = new gestionAbm();
+        gestBco.refrescartablaBanco(tabUsuario);
+        this.setVisible(false);
+        gestBco.setVisible(true);
+    }//GEN-LAST:event_botBancoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,14 +12,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rodry-Escritorio
  */
-public class gestionBanco extends javax.swing.JFrame {
+public class gestionAbm extends javax.swing.JFrame {
 
    DefaultTableModel tabUsuario;
    DefaultTableModel tabBanco;
    DefaultTableModel tabUsuarioComp;
-    public gestionBanco() {
-        initComponents();
+    public gestionAbm() {
         
+        initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     
@@ -51,7 +52,7 @@ public class gestionBanco extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
+                .addGap(117, 117, 117)
                 .addComponent(labelAbm)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -176,10 +177,10 @@ public class gestionBanco extends javax.swing.JFrame {
         this.tabBanco=contusu.banco();
        // System.out.println(tabcuenta.getValueAt(0, 9).toString());
        //mostramo la tabla del destinatario a traves de la cuenta vinculada
-        
-     //   labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
-     //   labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAbm.setText("Administracion de Banco");
+       // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
+       // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
         tablaAbm.setModel(this.tabBanco);
         
     
@@ -193,10 +194,10 @@ public class gestionBanco extends javax.swing.JFrame {
         this.tabUsuarioComp=contusu.todoUsuario();
        // System.out.println(tabcuenta.getValueAt(0, 9).toString());
        //mostramo la tabla del destinatario a traves de la cuenta vinculada
-        
-     //   labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
-     //   labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelAbm.setText("Administracion de Usuarios");
+        labelAbm.setText("Administracion de Usuarios"); 
+       // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
+       // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+       
         tablaAbm.setModel(this.tabUsuarioComp);
         
     
@@ -224,20 +225,21 @@ public class gestionBanco extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(gestionBanco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(gestionAbm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(gestionBanco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(gestionAbm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(gestionBanco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(gestionAbm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(gestionBanco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(gestionAbm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new gestionBanco().setVisible(true);
+                new gestionAbm().setVisible(true);
             }
         });
     }
