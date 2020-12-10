@@ -11,9 +11,11 @@ public class ControlUsuarios {
 
     //creamos una tabla de 2 dimensiones para guardar los datos de la bd
     final DefaultTableModel listaUsuarios = new DefaultTableModel(300, 9);
+    final DefaultTableModel listaUsuariosCom = new DefaultTableModel(300, 9);
     final DefaultTableModel listaCuenta = new DefaultTableModel(300, 9);
     final DefaultTableModel listaDestinatario = new DefaultTableModel(300, 3);
-
+    final DefaultTableModel listaBanco = new DefaultTableModel(300, 3);
+    
     public DefaultTableModel validarUsuario(Usuario usuario) {
         //Establecer coenxion a base de datos
         BaseDatos bD = new BaseDatos();
@@ -43,6 +45,35 @@ public class ControlUsuarios {
 
     }
 
+    public DefaultTableModel todoUsuario() {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        // se crea Resulset para traer los mismos registros de la base de dato al programa
+        ResultSet rs;
+
+        try {
+            Statement s = conx.createStatement();
+            // usamos una sentencia para ejecutarlo en mysql con resulset
+            rs = s.executeQuery("select * from cajeroprofe.usuario;");
+
+            //Se carga modelo de la tabla con los datos en rs a listaUsuario
+            GestorTabla.configuraColumnas(rs, this.listaUsuariosCom);
+            GestorTabla.rellena(rs, this.listaUsuariosCom);
+            //cerramos conexion
+            s.close();
+            rs.close();
+            return this.listaUsuariosCom;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+
+            return null;
+        }
+
+    }
+    
     public DefaultTableModel cuenta(String idusuario) {
         //Establecer coenxion a base de datos
         BaseDatos bD = new BaseDatos();
@@ -137,6 +168,35 @@ public class ControlUsuarios {
             bD.cierraConexion();
             return null;
 
+        }
+
+    }
+    
+     public DefaultTableModel banco() {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        // se crea Resulset para traer los mismos registros de la base de dato al programa
+        ResultSet rs;
+
+        try {
+            Statement s = conx.createStatement();
+            // usamos una sentencia para ejecutarlo en mysql con resulset
+            rs = s.executeQuery("SELECT * FROM cajeroprofe.banco;");
+
+            //Se carga modelo de la tabla con los datos en rs a listaUsuario
+            GestorTabla.configuraColumnas(rs, this.listaBanco);
+            GestorTabla.rellena(rs, this.listaBanco);
+            //cerramos conexion
+            s.close();
+            rs.close();
+            return this.listaBanco;
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+
+            return null;
         }
 
     }
