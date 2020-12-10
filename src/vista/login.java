@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuario;
+import vista.administrador.inicioAdmin;
 
 /**
  *
@@ -191,10 +192,24 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "no hay usuario registrado");
         } else {
             if (listausuario.getValueAt(0, 2).toString().equals(usu.getPassword())) {
-                this.setVisible(false);
-                inicio ini = new inicio();
-                ini.setVisible(true);
-                ini.iniciatxt(listausuario);
+               // this.setVisible(false);
+               // inicio ini = new inicio();
+               // ini.setVisible(true);
+               // ini.iniciatxt(listausuario);
+               
+               //condicion para iniciar en modo admin o usuaio comun
+                if(listausuario.getValueAt(0, 4).toString().equals("admin")){
+                    this.setVisible(false);
+                    inicioAdmin iniAdm = new inicioAdmin();
+                    iniAdm.setVisible(true);
+                    iniAdm.cargar(listausuario);
+                }else{
+                     this.setVisible(false);
+                     inicio ini = new inicio();
+                     ini.setVisible(true);
+                     ini.iniciatxt(listausuario);
+                    
+                }
                 
             } else {
                 //Crar clase estatica para contador 
