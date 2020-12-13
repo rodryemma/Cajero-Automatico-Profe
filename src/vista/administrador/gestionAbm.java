@@ -6,7 +6,9 @@
 package vista.administrador;
 
 import controlador.ControlUsuarios;
+import controlador.EliminarDeTabla;
 import javax.swing.table.DefaultTableModel;
+import vista.AgregarDestinatarios;
 
 /**
  *
@@ -14,16 +16,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class gestionAbm extends javax.swing.JFrame {
 
-   DefaultTableModel tabUsuario;
-   DefaultTableModel tabBanco;
-   DefaultTableModel tabUsuarioComp;
+    DefaultTableModel tabUsuario;
+    DefaultTableModel tabBanco;
+    DefaultTableModel tabUsuarioComp;
+    String bandera;
+    
+
     public gestionAbm() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
+        deshabilitarbott();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,8 +70,18 @@ public class gestionAbm extends javax.swing.JFrame {
         );
 
         botAgregar.setText("Agregar");
+        botAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botAgregarActionPerformed(evt);
+            }
+        });
 
         botModificar.setText("Modificar");
+        botModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botModificarActionPerformed(evt);
+            }
+        });
 
         botEliminar.setText("Eliminar");
         botEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +153,11 @@ public class gestionAbm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaAbm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAbmMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaAbm);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,44 +189,157 @@ public class gestionAbm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void refrescartablaBanco(DefaultTableModel usuario){
-    ControlUsuarios contusu = new ControlUsuarios();
-       //guardamos la tabla del usuario 
-        this.tabUsuario=usuario;
+    public void deshabilitarbott() {
+
+        botEliminar.setEnabled(false);
+        botModificar.setEnabled(false);
+        this.bandera = "";
+    }
+
+    public void refrescartablaBanco(DefaultTableModel usuario) {
+        //guardamos en bandera para saber en que tabal se debe trabajar
+        this.bandera = "banco";
+        ControlUsuarios contusu = new ControlUsuarios();
+        //guardamos la tabla del usuario 
+        this.tabUsuario = usuario;
         //guardamos la tabla de la cuenta del usuario
-        this.tabBanco=contusu.banco();
-       // System.out.println(tabcuenta.getValueAt(0, 9).toString());
-       //mostramo la tabla del destinatario a traves de la cuenta vinculada
+        this.tabBanco = contusu.banco();
+        // System.out.println(tabcuenta.getValueAt(0, 9).toString());
+        //mostramo la tabla del destinatario a traves de la cuenta vinculada
         labelAbm.setText("Administracion de Banco");
-       // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
-       // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
+        // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
+        // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         tablaAbm.setModel(this.tabBanco);
-        
-    
-}
-    
-   public void refrescartablaUsuario(DefaultTableModel usuario){
-    ControlUsuarios contusu = new ControlUsuarios();
-       //guardamos la tabla del usuario 
-        this.tabUsuario=usuario;
+
+    }
+
+    public void refrescartablaUsuario(DefaultTableModel usuario) {
+       //Se carga la bandera con usuario
+        this.bandera = "usuario";
+        ControlUsuarios contusu = new ControlUsuarios();
+        //guardamos la tabla del usuario 
+        this.tabUsuario = usuario;
         //guardamos la tabla de la cuenta del usuario
-        this.tabUsuarioComp=contusu.todoUsuario();
-       // System.out.println(tabcuenta.getValueAt(0, 9).toString());
-       //mostramo la tabla del destinatario a traves de la cuenta vinculada
-        labelAbm.setText("Administracion de Usuarios"); 
-       // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
-       // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-       
+        this.tabUsuarioComp = contusu.todoUsuario();
+
+        //mostramo la tabla del destinatario a traves de la cuenta vinculada
+        labelAbm.setText("Administracion de Usuarios");
+        // labelAbm.setFont(new java.awt.Font("Tahoma", 0, 18)); 
+        // labelAbm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         tablaAbm.setModel(this.tabUsuarioComp);
-        
-    
-} 
-    
-    
+
+    }
+
+
     private void botEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEliminarActionPerformed
-        // TODO add your handling code here:
+
+        if (this.bandera.equals("banco")) {
+
+            //SE guarda la fila seleccionada de Jtable 
+            int fila = tablaAbm.getSelectedRow();
+            //Guardamos el id de la tabla seleccionada
+            String idBanco = tabBanco.getValueAt(fila, 0).toString();
+
+            //se envia a eliminar con idCuenta e IdDestinatario
+            EliminarDeTabla eliTab = new EliminarDeTabla();
+            eliTab.EliminarBanco(idBanco);
+
+            System.out.println("idBanco:  " + idBanco);
+
+            //se refresca tabla para ver los datos actualizados
+            refrescartablaBanco(tabUsuario);
+        }
+
+        
+         if (this.bandera.equals("usuario")) {
+
+            //SE guarda la fila seleccionada de Jtable 
+            int fila = tablaAbm.getSelectedRow();
+            //Guardamos el id de la tabla seleccionada
+            String idusuario = tabUsuarioComp.getValueAt(fila, 0).toString();
+
+            //se envia a eliminar con idCuenta e IdDestinatario
+            EliminarDeTabla eliTab = new EliminarDeTabla();
+            eliTab.EliminarUsuario(idusuario);
+
+            System.out.println("idUsuario:  " + idusuario);
+
+            //se refresca tabla para ver los datos actualizados
+             refrescartablaUsuario(tabUsuario);
+        }
+
     }//GEN-LAST:event_botEliminarActionPerformed
+
+    private void tablaAbmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAbmMouseClicked
+        //Habiulitar botones despues de seleccionar un elemento en la tabla
+
+        botEliminar.setEnabled(true);
+        botModificar.setEnabled(true);
+
+    }//GEN-LAST:event_tablaAbmMouseClicked
+
+    private void botAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAgregarActionPerformed
+        //Iniciamos las tablas de agregar depéndiendo de las banderas
+
+        //condicion para iniciar con banco
+        if (this.bandera.equals("banco")) {
+
+            AgreModBanco agreBanc = new AgreModBanco();
+            agreBanc.agreBanco(tabUsuario);
+            agreBanc.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+
+            dispose();
+        }
+
+        //condicion para iniciar con usuario
+        if (this.bandera.equals("usuario")) {
+
+            AgreModUsuario agreUsu = new AgreModUsuario();
+           // agreUsu.agreUsuario(tabUsuario);
+            agreUsu.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+            dispose();
+        }
+
+
+    }//GEN-LAST:event_botAgregarActionPerformed
+
+    private void botModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModificarActionPerformed
+        
+        //Iniciamos las tablas de modificar depéndiendo de las banderas
+
+        //condicion para iniciar con banco
+        if (this.bandera.equals("banco")) {
+
+            AgreModBanco modBanc = new AgreModBanco();
+            int fila = tablaAbm.getSelectedRow();
+            modBanc.modBanco(tabUsuario,tabBanco, fila);
+            modBanc.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+
+            dispose();
+        }
+
+        //condicion para iniciar con usuario
+        if (this.bandera.equals("usuario")) {
+
+            AgreModUsuario agreUsu = new AgreModUsuario();
+           // agreUsu.agreUsuario(tabUsuario);
+            agreUsu.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+            dispose();
+        }
+
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_botModificarActionPerformed
 
     /**
      * @param args the command line arguments

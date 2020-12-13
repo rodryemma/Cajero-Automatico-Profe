@@ -66,5 +66,29 @@ public class AgregarDeTabla {
 
     }  
     
+      
+       public void AgregarBanco (String codigo, String nombre, String direccion) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        
+        try {
+
+            Statement s = conx.createStatement();
+            //SE envia el comando para agregar una nueva la tabla de destinatario
+            //con idDestinatario e idcuenta
+            s.execute("INSERT INTO `cajeroprofe`.`banco` (`codigo`, `nombre`, `direccion`) VALUES ('"+codigo+"', '"+nombre+"', '"+direccion+"');" );
+            
+            
+            s.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            
+
+        }
+
+    }  
     
 }

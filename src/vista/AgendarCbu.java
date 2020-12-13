@@ -213,6 +213,7 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     private void botAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAgregarActionPerformed
         
+        
         AgregarDestinatarios agreDes = new AgregarDestinatarios();
         agreDes.setVisible(true);
         agreDes.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(),this.tabcuenta);
@@ -303,7 +304,7 @@ public class AgendarCbu extends javax.swing.JFrame {
 
     private void TablaDestinatarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDestinatarioMouseClicked
         
-        //habilitaremos botones
+        //habilitaremos botones al seleccionar un elemento en la tabla
         botSeleccionar.setEnabled(true);
         botEliminar.setEnabled(true);
         botModificar.setEnabled(true);
@@ -311,8 +312,12 @@ public class AgendarCbu extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaDestinatarioMouseClicked
 
     private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
+        
+        //Cerramos ventana actual 
         transferencia trans = new transferencia();
         dispose();
+        
+        //y abrimos la vista de transferencia enviando la tabla de usuario
         trans.iniciaTxtTransf(tabusuario);
         trans.setVisible(true);
         
