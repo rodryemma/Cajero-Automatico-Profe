@@ -19,8 +19,8 @@ public class gestionAbm extends javax.swing.JFrame {
     DefaultTableModel tabUsuario;
     DefaultTableModel tabBanco;
     DefaultTableModel tabUsuarioComp;
+    DefaultTableModel tabCuentaCom;
     String bandera;
-    
 
     public gestionAbm() {
 
@@ -57,16 +57,16 @@ public class gestionAbm extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(296, 296, 296)
                 .addComponent(labelAbm)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(labelAbm)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         botAgregar.setText("Agregar");
@@ -94,23 +94,24 @@ public class gestionAbm extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(botAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
                 .addComponent(botAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botEliminar))
+                .addComponent(botModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botEliminar)
+                .addGap(6, 6, 6))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -122,7 +123,7 @@ public class gestionAbm extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(209, 209, 209)
+                .addGap(375, 375, 375)
                 .addComponent(botVolver)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -167,7 +168,7 @@ public class gestionAbm extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,7 +216,7 @@ public class gestionAbm extends javax.swing.JFrame {
     }
 
     public void refrescartablaUsuario(DefaultTableModel usuario) {
-       //Se carga la bandera con usuario
+        //Se carga la bandera con usuario
         this.bandera = "usuario";
         ControlUsuarios contusu = new ControlUsuarios();
         //guardamos la tabla del usuario 
@@ -230,6 +231,21 @@ public class gestionAbm extends javax.swing.JFrame {
 
         tablaAbm.setModel(this.tabUsuarioComp);
 
+    }
+
+    public void refrescartablaCuenta(DefaultTableModel usuario) {
+        //Se carga la bandera con cuenta
+        this.bandera = "cuenta";
+        // Instanciamos para crear un objeto en control de usuarios
+        ControlUsuarios contcuenta = new ControlUsuarios();
+        //guardamos la tabla del usuario 
+        this.tabUsuario = usuario;
+        //guradamos la tabla de cuenta completa
+        this.tabCuentaCom = contcuenta.cuentaCompleta();
+        //Cargamos el titulo al jlabel
+        labelAbm.setText("Administracion de Cuentas");
+        //mostramo la tabla del destinatario a traves de la cuenta vinculada
+        tablaAbm.setModel(this.tabCuentaCom);
     }
 
 
@@ -252,8 +268,7 @@ public class gestionAbm extends javax.swing.JFrame {
             refrescartablaBanco(tabUsuario);
         }
 
-        
-         if (this.bandera.equals("usuario")) {
+        if (this.bandera.equals("usuario")) {
 
             //SE guarda la fila seleccionada de Jtable 
             int fila = tablaAbm.getSelectedRow();
@@ -264,10 +279,25 @@ public class gestionAbm extends javax.swing.JFrame {
             EliminarDeTabla eliTab = new EliminarDeTabla();
             eliTab.EliminarUsuario(idusuario);
 
-            System.out.println("idUsuario:  " + idusuario);
+           // System.out.println("idUsuario:  " + idusuario);
 
             //se refresca tabla para ver los datos actualizados
-             refrescartablaUsuario(tabUsuario);
+            refrescartablaUsuario(tabUsuario);
+        }
+
+        if (this.bandera.equals("cuenta")) {
+            //SE guarda la fila seleccionada de Jtable 
+            int fila = tablaAbm.getSelectedRow();
+
+            //Guardamos el id de la tabla seleccionada para poder eliminar la celda
+            //Usaremos los 3 id que tenemos por celda
+            String idCuenta = tabCuentaCom.getValueAt(fila, 0).toString();
+            String idBanco = tabCuentaCom.getValueAt(fila, 10).toString();
+            String idusuario = tabCuentaCom.getValueAt(fila, 9).toString();
+            //System.out.println("idcuenta : "+idCuenta+" - Idbanco: "+idBanco+" - Idusuario :"+idusuario);
+            EliminarDeTabla eliTab = new EliminarDeTabla();
+            eliTab.EliminarCuenta(idCuenta, idusuario, idBanco);
+            refrescartablaCuenta(tabUsuario);
         }
 
     }//GEN-LAST:event_botEliminarActionPerformed
@@ -308,15 +338,14 @@ public class gestionAbm extends javax.swing.JFrame {
     }//GEN-LAST:event_botAgregarActionPerformed
 
     private void botModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModificarActionPerformed
-        
-        //Iniciamos las tablas de modificar depéndiendo de las banderas
 
+        //Iniciamos las tablas de modificar depéndiendo de las banderas
         //condicion para iniciar con banco
         if (this.bandera.equals("banco")) {
 
             AgreModBanco modBanc = new AgreModBanco();
             int fila = tablaAbm.getSelectedRow();
-            modBanc.modBanco(tabUsuario,tabBanco, fila);
+            modBanc.modBanco(tabUsuario, tabBanco, fila);
             modBanc.setVisible(true);
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
 
@@ -328,18 +357,13 @@ public class gestionAbm extends javax.swing.JFrame {
 
             AgreModUsuario agreUsu = new AgreModUsuario();
             int fila = tablaAbm.getSelectedRow();
-            agreUsu.modUsuario(tabUsuarioComp,tabUsuario, fila);
+            agreUsu.modUsuario(tabUsuarioComp, tabUsuario, fila);
             agreUsu.setVisible(true);
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
             dispose();
         }
 
-        
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_botModificarActionPerformed
 
     /**

@@ -15,6 +15,7 @@ public class ControlUsuarios {
     final DefaultTableModel listaCuenta = new DefaultTableModel(300, 9);
     final DefaultTableModel listaDestinatario = new DefaultTableModel(300, 3);
     final DefaultTableModel listaBanco = new DefaultTableModel(300, 3);
+    final DefaultTableModel listacuentaCom= new DefaultTableModel(300, 3);
     
     public DefaultTableModel validarUsuario(Usuario usuario) {
         //Establecer coenxion a base de datos
@@ -200,8 +201,37 @@ public class ControlUsuarios {
         }
 
     }
-    
-    
+    //SELECT * FROM cajeroprofe.cuenta;
+    public DefaultTableModel cuentaCompleta() {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        ResultSet rs;
+        //System.out.println(idusuario);
+        try {
+
+            Statement s = conx.createStatement();
+            // usamos el codigo en mysql y lo modificamos
+            rs = s.executeQuery("SELECT * FROM cajeroprofe.cuenta;");
+
+            GestorTabla.configuraColumnas(rs, this.listacuentaCom);
+            GestorTabla.rellena(rs, this.listacuentaCom);
+            //System.out.println(rs.getString("nombre"));
+
+            //cerramos conexion
+            s.close();
+            rs.close();
+            return this.listacuentaCom;
+            //System.exit(0);
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            return null;
+
+        }
+
+    }
     
     
     

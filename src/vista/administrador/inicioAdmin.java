@@ -70,6 +70,11 @@ public class inicioAdmin extends javax.swing.JFrame {
         });
 
         botAbm.setText("Abm Cuentas");
+        botAbm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botAbmActionPerformed(evt);
+            }
+        });
 
         botBanco.setText("Abm Bancos");
         botBanco.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +171,13 @@ public class inicioAdmin extends javax.swing.JFrame {
         this.setVisible(false);
         gestBco.setVisible(true);
     }//GEN-LAST:event_botBancoActionPerformed
+
+    private void botAbmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAbmActionPerformed
+        gestionAbm gestCta = new gestionAbm();
+        gestCta.refrescartablaCuenta(tabUsuario);
+        this.setVisible(false);
+        gestCta.setVisible(true);
+    }//GEN-LAST:event_botAbmActionPerformed
 
     /**
      * @param args the command line arguments
