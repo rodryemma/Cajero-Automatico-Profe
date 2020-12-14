@@ -87,6 +87,32 @@ public class ModificarDeTabla {
     }  
     
     
+     
+     
+      public void modiUsuario (String idUsario,String usuario,String pass,String banned,String tipo,String nombre,String apellido, String dni , String cel) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        
+        try {
+
+            Statement s = conx.createStatement();
+            //SE envia el comando para agregar una nueva la tabla de destinatario
+            //con idDestinatario e idcuenta
+            s.executeUpdate("UPDATE `cajeroprofe`.`usuario` SET `usuario` = '"+usuario+"', `password` = '"+pass+"', `banned` = '"+banned+"', `tipo` = '"+tipo+"', `nombre` = '"+nombre+"', `apellido` = '"+apellido+"', `dni` = '"+dni+"', `cel` = '"+cel+"' WHERE (`idusuario` = '"+idUsario+"');");
+            
+            
+            s.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            
+
+        }
+
+    }  
+    
     
     
     

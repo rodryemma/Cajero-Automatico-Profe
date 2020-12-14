@@ -89,6 +89,31 @@ public class AgregarDeTabla {
 
         }
 
-    }  
+    } 
+       
+       public void agregarUsuario (String usuario, String pass, String banned, String tipo, String nombre, String apellido, String dni , String cel){
+           
+           //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        
+        try {
+
+            Statement s = conx.createStatement();
+            //SE envia el comando para agregar una nueva la tabla de destinatario
+            //con idDestinatario e idcuenta
+            s.execute("INSERT INTO `cajeroprofe`.`usuario` (`usuario`, `password`, `banned`, `tipo`, `nombre`, `apellido`, `dni`, `cel`) VALUES ('"+usuario+"', '"+pass+"', '"+banned+"', '"+tipo+"', '"+nombre+"', '"+apellido+"', '"+dni+"', '"+cel+"');" );
+            
+            
+            s.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            
+
+        }
+           
+       }
     
 }

@@ -298,7 +298,7 @@ public class gestionAbm extends javax.swing.JFrame {
         if (this.bandera.equals("usuario")) {
 
             AgreModUsuario agreUsu = new AgreModUsuario();
-           // agreUsu.agreUsuario(tabUsuario);
+            agreUsu.agreUsuario(tabUsuario);
             agreUsu.setVisible(true);
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
             dispose();
@@ -327,7 +327,8 @@ public class gestionAbm extends javax.swing.JFrame {
         if (this.bandera.equals("usuario")) {
 
             AgreModUsuario agreUsu = new AgreModUsuario();
-           // agreUsu.agreUsuario(tabUsuario);
+            int fila = tablaAbm.getSelectedRow();
+            agreUsu.modUsuario(tabUsuarioComp,tabUsuario, fila);
             agreUsu.setVisible(true);
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
             dispose();
