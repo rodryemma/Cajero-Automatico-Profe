@@ -7,6 +7,7 @@ package vista.administrador;
 
 import controlador.ControlUsuarios;
 import controlador.EliminarDeTabla;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import vista.AgregarDestinatarios;
 
@@ -294,14 +295,27 @@ public class gestionAbm extends javax.swing.JFrame {
             String idCuenta = tabCuentaCom.getValueAt(fila, 0).toString();
             String idBanco = tabCuentaCom.getValueAt(fila, 10).toString();
             String idusuario = tabCuentaCom.getValueAt(fila, 9).toString();
-            //System.out.println("idcuenta : "+idCuenta+" - Idbanco: "+idBanco+" - Idusuario :"+idusuario);
+            
+            
+            
+            //System.out.println("idcuenta : "+idCuenta+" - Idbanco: "+idBanco+" - Idusuario :"+idusuario+" - fecha: "+fecha());
             EliminarDeTabla eliTab = new EliminarDeTabla();
-            eliTab.EliminarCuenta(idCuenta, idusuario, idBanco);
+            eliTab.EliminarCuenta(idCuenta, idusuario, idBanco,fecha());
             refrescartablaCuenta(tabUsuario);
         }
 
     }//GEN-LAST:event_botEliminarActionPerformed
 
+    
+    public String fecha(){
+        Calendar c = Calendar.getInstance();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH));
+            String annio = Integer.toString(c.get(Calendar.YEAR));
+            String fecha = annio+"/"+mes+"/"+dia;
+            return fecha;
+    }
+    
     private void tablaAbmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAbmMouseClicked
         //Habiulitar botones despues de seleccionar un elemento en la tabla
 

@@ -98,7 +98,7 @@ public class EliminarDeTabla {
     }  
      
      
-     public void EliminarCuenta (String idcuenta, String idUsuario , String idBanco) {
+     public void EliminarCuenta (String idcuenta, String idUsuario , String idBanco,String fechabaja) {
         //Establecer coenxion a base de datos
         BaseDatos bD = new BaseDatos();
         java.sql.Connection conx = bD.estableceConexion();
@@ -108,7 +108,7 @@ public class EliminarDeTabla {
             Statement s = conx.createStatement();
             //SE envia el comando para eliminar la tabla de destinatario
             //con idDestinatario e idcuenta
-            s.execute("DELETE FROM `cajeroprofe`.`cuenta` WHERE (`idcuenta` = '"+idcuenta+"') and (`idusuario` = '"+idUsuario+"') and (`idbanco` = '"+idBanco+"');" );
+            s.executeUpdate("UPDATE `cajeroprofe`.`cuenta` SET `usuarioalta` = 'false', `fechabaja` = '"+fechabaja+"', `usuariobaja` = 'true' WHERE (`idcuenta` = '"+idcuenta+"') and (`idusuario` = '"+idUsuario+"') and (`idbanco` = '"+idBanco+"');" );
             
             
             s.close();
