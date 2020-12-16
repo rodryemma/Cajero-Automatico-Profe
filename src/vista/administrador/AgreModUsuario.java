@@ -9,20 +9,19 @@ import controlador.AgregarDeTabla;
 import controlador.ModificarDeTabla;
 import javax.swing.table.DefaultTableModel;
 
-        
-
-
 public class AgreModUsuario extends javax.swing.JFrame {
 
     DefaultTableModel tabUsuarioCom;
     DefaultTableModel tabUsuario;
     String bandera;
     String idusuario;
+
     public AgreModUsuario() {
         initComponents();
+        //centra vista
+        this.setLocationRelativeTo(null);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -217,19 +216,18 @@ public class AgreModUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void agreUsuario (DefaultTableModel tabUsuari){
-        this.tabUsuario=tabUsuari;
-        this.bandera="agregar";
-        
+    public void agreUsuario(DefaultTableModel tabUsuari) {
+        this.tabUsuario = tabUsuari;
+        this.bandera = "agregar";
+
     }
-    
-    
-    public void modUsuario (DefaultTableModel tabUsuarioCom,DefaultTableModel tabUsu, int fila){
-        this.bandera="modificar";
-        this.tabUsuario=tabUsu;
-        this.tabUsuarioCom=tabUsuarioCom;
-        this.idusuario=this.tabUsuarioCom.getValueAt(fila, 0).toString();
-        
+
+    public void modUsuario(DefaultTableModel tabUsuarioCom, DefaultTableModel tabUsu, int fila) {
+        this.bandera = "modificar";
+        this.tabUsuario = tabUsu;
+        this.tabUsuarioCom = tabUsuarioCom;
+        this.idusuario = this.tabUsuarioCom.getValueAt(fila, 0).toString();
+
         txtUsuario.setText(this.tabUsuarioCom.getValueAt(fila, 1).toString());
         txtPass.setText(this.tabUsuarioCom.getValueAt(fila, 2).toString());
         txtBanned.setText(this.tabUsuarioCom.getValueAt(fila, 3).toString());
@@ -238,126 +236,102 @@ public class AgreModUsuario extends javax.swing.JFrame {
         txtApellido.setText(this.tabUsuarioCom.getValueAt(fila, 6).toString());
         txtDni.setText(this.tabUsuarioCom.getValueAt(fila, 7).toString());
         txtCelular.setText(this.tabUsuarioCom.getValueAt(fila, 8).toString());
-        
-      
-        
+
     }
-    
-    
+
+
     private void botGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botGuardarActionPerformed
-       
+
         if (bandera.equals("agregar")) {
-        
+
             AgregarDeTabla agreTabla = new AgregarDeTabla();
-            
-            
-            String usuario=txtUsuario.getText();
-            
-            
-            String pass=txtPass.getText();
-            if(pass.equals("")||pass.equals("null") ){
-                pass="123456";
-                
+
+            String usuario = txtUsuario.getText();
+
+            String pass = txtPass.getText();
+            if (pass.equals("") || pass.equals("null")) {
+                pass = "123456";
+
             }
-            
-            
-            String banned=txtBanned.getText();
-            if (banned.equals("true")){
-                
-            }else{
-                banned=("false");
+
+            String banned = txtBanned.getText();
+            if (banned.equals("true")) {
+
+            } else {
+                banned = ("false");
             }
-            
-            String tipo=txtTipo.getText();
-            String nombre=txtNombre.getText();
-            String apellido=txtApellido.getText();       
-           
-            
-            
-            
-             String dni=txtDni.getText();
-            if (dni.equals("")||dni.equals(null) ){
-                dni=("0");
+
+            String tipo = txtTipo.getText();
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+
+            String dni = txtDni.getText();
+            if (dni.equals("") || dni.equals(null)) {
+                dni = ("0");
             }
-            
-            String cel=txtCelular.getText();
-            if (cel.equals("")||cel.equals(null) ){
-                cel=("0");
+
+            String cel = txtCelular.getText();
+            if (cel.equals("") || cel.equals(null)) {
+                cel = ("0");
             }
-            
-            
-            
+
             agreTabla.agregarUsuario(usuario, pass, banned, tipo, nombre, apellido, dni, cel);
-                
-       
-        
+
             volver();
-            
-            
-            
+
         }
-        
-        
+
         if (bandera.equals("modificar")) {
-            
+
             ModificarDeTabla modTabla = new ModificarDeTabla();
-            
-            String usuario=txtUsuario.getText();
-            String pass=txtPass.getText();
-            String banned=txtBanned.getText();
-            
-            String tipo=txtTipo.getText();
-            String nombre=txtNombre.getText();
-            String apellido=txtApellido.getText();       
-            String dni=txtDni.getText();
-            
-            if (banned.equals("true")){
-                
-            }else{
-                banned=("false");
+
+            String usuario = txtUsuario.getText();
+            String pass = txtPass.getText();
+            String banned = txtBanned.getText();
+
+            String tipo = txtTipo.getText();
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            String dni = txtDni.getText();
+
+            if (banned.equals("true")) {
+
+            } else {
+                banned = ("false");
             }
-            
-            if (dni.equals("")||dni.equals(null) ){
-                dni=("0");
+
+            if (dni.equals("") || dni.equals(null)) {
+                dni = ("0");
             }
-            
-            String cel=txtCelular.getText();
-            if (cel.equals("")||cel.equals(null) ){
-                cel=("0");
+
+            String cel = txtCelular.getText();
+            if (cel.equals("") || cel.equals(null)) {
+                cel = ("0");
             }
-            
-            modTabla.modiUsuario(idusuario, usuario, pass, banned, tipo, nombre,apellido, dni, cel);
-            
-            
+
+            modTabla.modiUsuario(idusuario, usuario, pass, banned, tipo, nombre, apellido, dni, cel);
+
             volver();
-            
-            
-            
+
         }
-        
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_botGuardarActionPerformed
 
-    public void volver (){
+    public void volver() {
         gestionAbm gestAbm = new gestionAbm();
         dispose();
         gestAbm.refrescartablaUsuario(tabUsuario);
         gestAbm.setVisible(true);
-        
+
     }
-    
+
     private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
-       volver();
-        
-        
+        volver();
+
+
     }//GEN-LAST:event_botCancelarActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

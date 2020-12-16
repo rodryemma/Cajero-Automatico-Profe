@@ -159,7 +159,7 @@ public class inicioAdmin extends javax.swing.JFrame {
     private void botUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botUsuarioActionPerformed
        gestionAbm gestBco = new gestionAbm();
        gestBco.refrescartablaUsuario(tabUsuario);
-       this.setVisible(false);
+       //this.setVisible(false);
        gestBco.setVisible(true);
        
         
@@ -168,14 +168,14 @@ public class inicioAdmin extends javax.swing.JFrame {
     private void botBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBancoActionPerformed
         gestionAbm gestBco = new gestionAbm();
         gestBco.refrescartablaBanco(tabUsuario);
-        this.setVisible(false);
+        //this.setVisible(false);
         gestBco.setVisible(true);
     }//GEN-LAST:event_botBancoActionPerformed
 
     private void botAbmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botAbmActionPerformed
         gestionAbm gestCta = new gestionAbm();
         gestCta.refrescartablaCuenta(tabUsuario);
-        this.setVisible(false);
+       // this.setVisible(false);
         gestCta.setVisible(true);
     }//GEN-LAST:event_botAbmActionPerformed
 

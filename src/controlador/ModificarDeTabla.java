@@ -115,5 +115,31 @@ public class ModificarDeTabla {
     
     
     
+   public void modiCuenta (String idUsario,String nrocuenta, String saldo , String fecha , String idcuenta ,String idusuario , String idbanco ,String modIdusuario ,String modIdbanco) {
+        //Establecer coenxion a base de datos
+        BaseDatos bD = new BaseDatos();
+        java.sql.Connection conx = bD.estableceConexion();
+        
+        try {
+
+            Statement s = conx.createStatement();
+            //SE envia el comando para agregar una nueva la tabla de destinatario
+            //con idDestinatario e idcuenta
+            s.executeUpdate("UPDATE `cajeroprofe`.`cuenta` SET `nrocuenta` = '"+nrocuenta+"', `saldo` = '"+saldo+"', `fechamodificacion` = '"+fecha+"', `usuariomodificacion` = 'true', `idusuario` = '"+modIdusuario+"', `idbanco` = '"+modIdbanco+"' WHERE (`idcuenta` = '"+idcuenta+"') and (`idusuario` = '"+idusuario+"') and (`idbanco` = '"+idbanco+"');");
+            
+            
+            s.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+            bD.cierraConexion();
+            
+
+        }
+
+    }     
+      
     
-}
+}  
+
+

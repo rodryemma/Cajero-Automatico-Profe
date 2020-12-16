@@ -45,7 +45,7 @@ public class gestionAbm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAbm = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -133,7 +133,7 @@ public class gestionAbm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botVolver)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         tablaAbm.setModel(new javax.swing.table.DefaultTableModel(
@@ -347,7 +347,16 @@ public class gestionAbm extends javax.swing.JFrame {
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
             dispose();
         }
+        
+        //condicion para iniciar con usuario
+        if (this.bandera.equals("cuenta")) {
 
+            AgreModCuenta agreCta = new AgreModCuenta();
+            agreCta.agreCuenta(tabUsuario);
+            agreCta.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+            dispose();
+        }
 
     }//GEN-LAST:event_botAgregarActionPerformed
 
@@ -376,7 +385,17 @@ public class gestionAbm extends javax.swing.JFrame {
             // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
             dispose();
         }
+           
+         //condicion para iniciar con usuario
+        if (this.bandera.equals("cuenta")) {
 
+            AgreModCuenta agreCta = new AgreModCuenta();
+            int fila = tablaAbm.getSelectedRow();
+            agreCta.modifCuenta(tabUsuario,tabCuentaCom,fila);
+            agreCta.setVisible(true);
+            // agreBanc.guardarIdcuenta(tabcuenta.getValueAt(0, 9).toString(), this.tabcuenta);
+            dispose();
+        }
 
     }//GEN-LAST:event_botModificarActionPerformed
 
