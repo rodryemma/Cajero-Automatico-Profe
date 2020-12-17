@@ -8,8 +8,12 @@ public class buscador extends javax.swing.JFrame {
 
     DefaultTableModel tabusuario;
     String bandera;
+    String accion;
     String idUsuario;
     String idBanco;
+    String idcuenta;
+    String idusunew;
+    String idbconew;
     String nrocuenta;
     String saldo;
 
@@ -151,13 +155,18 @@ public class buscador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cargarTablaUsu(DefaultTableModel tabUsu ,String idusuario, String idbanco,String nrocta, String sal) {
+    public void cargarTablaUsu(DefaultTableModel tabUsu ,String idCta,String idusuario, String idbanco,String idusunew, String idbconew, String nrocta, String sal,String acci) {
         //guardamos la tabla del usuario activo
         this.tabusuario = tabUsu;
         //señalamos que se trata de ussuario
         this.bandera = "usuario";
+        //señalamos la accion de agregar o modificar
+        this.accion=acci;
+        this.idusunew=idusunew;
+        this.idbconew=idbconew;
         this.idUsuario=idusuario;
         this.idBanco=idbanco;
+        this.idcuenta=idCta;
         this.nrocuenta=nrocta;
         this.saldo=sal;
         //instanciamo para poder traer la tabla completa de usuario
@@ -169,13 +178,18 @@ public class buscador extends javax.swing.JFrame {
         jtableBuscador.setModel(contusu.todoUsuario());
     }
 
-    public void cargarTablaBco(DefaultTableModel tabUsu ,String idusuario, String idbanco,String nrocta, String sal) {
+    public void cargarTablaBco(DefaultTableModel tabUsu ,String idCta,String idusuario, String idbanco,String idusunew, String idbconew,String nrocta, String sal, String acci) {
         //guardamos la tabla del usuario activo
         this.tabusuario = tabUsu;
         //señalamos que se trata de banco
         this.bandera = "banco";
+         //señalamos la accion de agregar o modificar
+        this.accion=acci;
+        this.idusunew=idusunew;
+        this.idbconew=idbconew;
         this.idUsuario=idusuario;
         this.idBanco=idbanco;
+        this.idcuenta=idCta;
         this.nrocuenta=nrocta;
         this.saldo=sal;
         //instanciamo para poder traer la tabla completa de banco
@@ -195,13 +209,13 @@ public class buscador extends javax.swing.JFrame {
         String id = jtableBuscador.getValueAt(fila, 0).toString();
         AgreModCuenta agreModCta = new AgreModCuenta();
         if (this.bandera.equals("usuario")){
-            this.idUsuario=id;
-            agreModCta.cargaridusuario(tabusuario,this.idUsuario,this.idBanco,this.nrocuenta, this.saldo);
+            this.idusunew=id;
+            agreModCta.cargaridusuario(tabusuario,this.idcuenta,this.idUsuario,this.idBanco,this.idusunew,this.idbconew, this.nrocuenta, this.saldo, this.accion);
             System.out.println("se envio id: "+id);
         }
          if (this.bandera.equals("banco")){
-            this.idBanco=id;
-            agreModCta.cargaridbanco(tabusuario,this.idUsuario,this.idBanco,this.nrocuenta, this.saldo);
+            this.idbconew=id;
+            agreModCta.cargaridbanco(tabusuario,this.idcuenta,this.idUsuario,this.idBanco,this.idusunew,this.idbconew,this.nrocuenta, this.saldo , this.accion);
         System.out.println("se envio id: "+id);
          }
         

@@ -115,7 +115,7 @@ public class ModificarDeTabla {
     
     
     
-   public void modiCuenta (String idUsario,String nrocuenta, String saldo , String fecha , String idcuenta ,String idusuario , String idbanco ,String modIdusuario ,String modIdbanco) {
+   public void modiCuenta (String nrocuenta, String saldo , String fecha , String idcuenta ,String idusuario , String idbanco ,String modIdusunew ,String modIdbannew) {
         //Establecer coenxion a base de datos
         BaseDatos bD = new BaseDatos();
         java.sql.Connection conx = bD.estableceConexion();
@@ -125,7 +125,7 @@ public class ModificarDeTabla {
             Statement s = conx.createStatement();
             //SE envia el comando para agregar una nueva la tabla de destinatario
             //con idDestinatario e idcuenta
-            s.executeUpdate("UPDATE `cajeroprofe`.`cuenta` SET `nrocuenta` = '"+nrocuenta+"', `saldo` = '"+saldo+"', `fechamodificacion` = '"+fecha+"', `usuariomodificacion` = 'true', `idusuario` = '"+modIdusuario+"', `idbanco` = '"+modIdbanco+"' WHERE (`idcuenta` = '"+idcuenta+"') and (`idusuario` = '"+idusuario+"') and (`idbanco` = '"+idbanco+"');");
+            s.executeUpdate("UPDATE `cajeroprofe`.`cuenta` SET `nrocuenta` = '"+nrocuenta+"', `saldo` = '"+saldo+"', `fechamodificacion` = '"+fecha+"', `usuariomodificacion` = 'true', `idusuario` = '"+modIdusunew+"', `idbanco` = '"+modIdbannew+"' WHERE (`idcuenta` = '"+idcuenta+"') and (`idusuario` = '"+idusuario+"') and (`idbanco` = '"+idbanco+"');");
             
             
             s.close();

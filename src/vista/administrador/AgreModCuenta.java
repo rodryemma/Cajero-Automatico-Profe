@@ -5,8 +5,13 @@
  */
 package vista.administrador;
 
+import controlador.AgregarDeTabla;
+import controlador.ModificarDeTabla;
+import java.util.Calendar;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import modelo.Cuenta_;
+import modelo.Trasferencia_;
 
 public class AgreModCuenta extends javax.swing.JFrame {
 
@@ -16,6 +21,8 @@ public class AgreModCuenta extends javax.swing.JFrame {
     String idcuenta;
     String idbanco;
     String idusuario;
+    String idUsuNew;
+    String idBcoNew;
 
     public AgreModCuenta() {
         initComponents();
@@ -217,6 +224,15 @@ public class AgreModCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public String fecha() {
+        Calendar c = Calendar.getInstance();
+        String dia = Integer.toString(c.get(Calendar.DATE));
+        String mes = Integer.toString(c.get(Calendar.MONTH));
+        String annio = Integer.toString(c.get(Calendar.YEAR));
+        String fecha = annio + "/" + mes + "/" + dia;
+        return fecha;
+    }
+
     public void agreCuenta(DefaultTableModel tabusu) {
         this.tabusuario = tabusu;
         this.bandera = "agregar";
@@ -236,30 +252,37 @@ public class AgreModCuenta extends javax.swing.JFrame {
         txtSaldo.setText(this.tabcuentacom.getValueAt(fila, 2).toString());
         txtIdUsuario.setText(this.idusuario);
         txtIdBanco.setText(this.idbanco);
-
+        this.idUsuNew = this.idusuario;
+        this.idBcoNew = this.idbanco;
     }
 
-    public void cargaridusuario(DefaultTableModel tabUsu, String idusuario, String idbanco, String nrocuenta, String saldo) {
-
-        this.idusuario = idusuario;
-        this.idbanco = idbanco;
+    public void cargaridusuario(DefaultTableModel tabUsu,String idCta,String idusu, String idbco, String idUsunew, String idBancnew, String nrocuenta, String saldo, String bande) {
+        this.idUsuNew = idUsunew;
+        this.idBcoNew = idBancnew;
+        this.bandera = bande;
+        this.idusuario=idusu;
+        this.idbanco=idbco;
+        this.idcuenta=idCta;
         txtnroCuenta.setText(nrocuenta);
         txtSaldo.setText(saldo);
-        txtIdUsuario.setText(this.idusuario);
-        txtIdBanco.setText(this.idbanco);
+        txtIdUsuario.setText(this.idUsuNew);
+        txtIdBanco.setText(this.idBcoNew);
         this.setVisible(true);
-
+        
         // this.setVisible(true);
     }
 
-    public void cargaridbanco(DefaultTableModel tabUsu, String idusuario, String idbanco, String nrocuenta, String saldo) {
-
-        this.idusuario = idusuario;
-        this.idbanco = idbanco;
+    public void cargaridbanco(DefaultTableModel tabUsu,String idCta,String idusu, String idbco, String idusuario, String idbanco, String nrocuenta, String saldo, String bande) {
+        this.idUsuNew = idusuario;
+        this.idBcoNew = idbanco;
+        this.bandera = bande;
+        this.idusuario=idusu;
+        this.idbanco=idbco;
+        this.idcuenta=idCta;
         txtnroCuenta.setText(nrocuenta);
         txtSaldo.setText(saldo);
-        txtIdUsuario.setText(this.idusuario);
-        txtIdBanco.setText(this.idbanco);
+        txtIdUsuario.setText(this.idUsuNew);
+        txtIdBanco.setText(this.idBcoNew);
         this.setVisible(true);
 
         //this.setVisible(true);
@@ -267,7 +290,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
 
     private void botBuscUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscUsuarioActionPerformed
         buscador busc = new buscador();
-        busc.cargarTablaUsu(tabusuario, idusuario, idbanco, txtnroCuenta.getText().toString(), txtSaldo.getText().toString());
+        busc.cargarTablaUsu(tabusuario,idcuenta,idusuario,idbanco, idUsuNew, idBcoNew, txtnroCuenta.getText().toString(), txtSaldo.getText().toString(), bandera);
         busc.setVisible(true);
         dispose();
 
@@ -275,7 +298,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
 
     private void botBusBancActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBusBancActionPerformed
         buscador busc = new buscador();
-        busc.cargarTablaBco(tabusuario, idusuario, idbanco, txtnroCuenta.getText().toString(), txtSaldo.getText().toString());
+        busc.cargarTablaBco(tabusuario,idcuenta,idusuario,idbanco, idUsuNew, idBcoNew, txtnroCuenta.getText().toString(), txtSaldo.getText().toString(), bandera);
         busc.setVisible(true);
         dispose();
 
@@ -283,12 +306,39 @@ public class AgreModCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_botBusBancActionPerformed
 
     private void botGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botGuardarActionPerformed
+        String nrocta = txtnroCuenta.getText().toString();
+        String saldo = txtSaldo.getText().toString();
+
+        if (this.bandera.equals("agregar")) {
+            AgregarDeTabla agreCta = new AgregarDeTabla();
+
+            System.out.println("nrocta :" + nrocta + " saldo :" + saldo + " idusuario :" + idUsuNew + " idbanco: " + idBcoNew);
+            agreCta.agregarCuenta(nrocta, saldo, fecha(), idUsuNew, idBcoNew);
+            volver();
+        }
+
+        if (this.bandera.equals("modificar")) {
+            ModificarDeTabla modCta = new ModificarDeTabla();
+            System.out.println("nrocta :" + nrocta + " -saldo :" + saldo +" -idcuenta : "+idcuenta+ " -idusuario :" + this.idusuario + " -idbanco: " + this.idbanco + " -idusunew: " + idUsuNew + " -idbconew: " + idBcoNew);
+            modCta.modiCuenta(nrocta, saldo, fecha(), idcuenta, idusuario, idbanco, idUsuNew, idBcoNew);
+            volver();
+        }
+
 
     }//GEN-LAST:event_botGuardarActionPerformed
 
-    private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
 
+    private void botCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCancelarActionPerformed
+        volver();
     }//GEN-LAST:event_botCancelarActionPerformed
+
+    public void volver() {
+        gestionAbm gestAbm = new gestionAbm();
+        dispose();
+        gestAbm.refrescartablaCuenta(tabusuario);
+        gestAbm.setVisible(true);
+
+    }
 
     public static void main(String args[]) {
 
