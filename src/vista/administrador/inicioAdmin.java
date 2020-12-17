@@ -35,7 +35,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         botAbm = new javax.swing.JButton();
         botBanco = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        botCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +50,7 @@ public class inicioAdmin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(163, 163, 163)
+                .addGap(177, 177, 177)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -109,7 +109,12 @@ public class inicioAdmin extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("Cerrar Sesion");
+        botCerrarSesion.setText("Cerrar Sesion");
+        botCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -117,14 +122,14 @@ public class inicioAdmin extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(148, 148, 148)
-                .addComponent(jButton1)
+                .addComponent(botCerrarSesion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(botCerrarSesion)
                 .addContainerGap())
         );
 
@@ -179,6 +184,10 @@ public class inicioAdmin extends javax.swing.JFrame {
         gestCta.setVisible(true);
     }//GEN-LAST:event_botAbmActionPerformed
 
+    private void botCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCerrarSesionActionPerformed
+            System.exit(0);
+    }//GEN-LAST:event_botCerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,8 +226,8 @@ public class inicioAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botAbm;
     private javax.swing.JButton botBanco;
+    private javax.swing.JButton botCerrarSesion;
     private javax.swing.JButton botUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

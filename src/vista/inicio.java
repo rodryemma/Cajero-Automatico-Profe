@@ -22,7 +22,7 @@ public class inicio extends javax.swing.JFrame {
      *
      */
     DefaultTableModel tabusuario;
-    
+    String idCuenta;
     
     public inicio() {
         
@@ -51,7 +51,6 @@ public class inicio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         bottTransferencia = new javax.swing.JButton();
         botMovimiento = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         botCerrarSesion = new javax.swing.JButton();
         txtBanco = new javax.swing.JLabel();
 
@@ -131,8 +130,6 @@ public class inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("jButton3");
-
         botCerrarSesion.setText("Cerrar Sesion");
         botCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +143,14 @@ public class inicio extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bottTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(bottTransferencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botCerrarSesion)
+                .addGap(71, 71, 71))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +160,7 @@ public class inicio extends javax.swing.JFrame {
                     .addComponent(bottTransferencia)
                     .addComponent(botMovimiento))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(botCerrarSesion))
+                .addComponent(botCerrarSesion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -224,6 +219,7 @@ public class inicio extends javax.swing.JFrame {
         //Se cargan los datos del usuario en la ventana de inicio
         txtNombre.setText(usuario.getValueAt(0, 5).toString());
         txtApellido.setText(usuario.getValueAt(0, 6).toString());
+        this.idCuenta=contusu.cuenta(usuario.getValueAt(0, 0).toString()).getValueAt(0, 9).toString();
         txtNroCuenta.setText("Nro " + contusu.cuenta(usuario.getValueAt(0, 0).toString()).getValueAt(0, 9).toString());
         //buscamos el banco asociado a su base de dato
         txtBanco.setText("Banco " + bu.nombreBanco(usuario.getValueAt(0, 0).toString()));
@@ -234,16 +230,19 @@ public class inicio extends javax.swing.JFrame {
         transferencia transf = new transferencia();
         transf.setVisible(true);
         transf.iniciaTxtTransf(this.tabusuario);
-        dispose();
+        
 
     }//GEN-LAST:event_bottTransferenciaActionPerformed
 
     private void botMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botMovimientoActionPerformed
-        // TODO add your handling code here:
+        movimiento mov = new movimiento();
+        
+        mov.cargarTabla(tabusuario,this.idCuenta);
+        mov.setVisible(true);
     }//GEN-LAST:event_botMovimientoActionPerformed
 
     private void botCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCerrarSesionActionPerformed
-       
+            System.exit(0);
         
     }//GEN-LAST:event_botCerrarSesionActionPerformed
 
@@ -288,7 +287,6 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton botCerrarSesion;
     private javax.swing.JButton botMovimiento;
     private javax.swing.JButton bottTransferencia;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelinicio;

@@ -29,6 +29,10 @@ public class AgreModCuenta extends javax.swing.JFrame {
 
         //centra vista
         this.setLocationRelativeTo(null);
+        
+        
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -36,7 +40,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labTitulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,9 +62,9 @@ public class AgreModCuenta extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("AgreMod Cuenta");
+        labTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labTitulo.setText("AgreMod Cuenta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,14 +72,14 @@ public class AgreModCuenta extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
-                .addComponent(jLabel1)
+                .addComponent(labTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,14 +237,26 @@ public class AgreModCuenta extends javax.swing.JFrame {
         return fecha;
     }
 
+    
+    public void botguardar(){
+        if(txtIdUsuario.getText().toString().equals("")||txtIdBanco.getText().toString().equals("")){
+            botGuardar.setEnabled(false);
+        }else{
+        botGuardar.setEnabled(true);
+        }
+    }
+    
+    
     public void agreCuenta(DefaultTableModel tabusu) {
+        labTitulo.setText("Agregar cuenta");
         this.tabusuario = tabusu;
         this.bandera = "agregar";
-        botGuardar.setEnabled(false);
+        botguardar();
 
     }
 
     public void modifCuenta(DefaultTableModel tabusu, DefaultTableModel tabcuenta, int fila) {
+        labTitulo.setText("Modificar cuenta");
         this.tabusuario = tabusu;
         this.tabcuentacom = tabcuenta;
         this.bandera = "modificar";
@@ -254,6 +270,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
         txtIdBanco.setText(this.idbanco);
         this.idUsuNew = this.idusuario;
         this.idBcoNew = this.idbanco;
+        botguardar();
     }
 
     public void cargaridusuario(DefaultTableModel tabUsu,String idCta,String idusu, String idbco, String idUsunew, String idBancnew, String nrocuenta, String saldo, String bande) {
@@ -268,6 +285,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
         txtIdUsuario.setText(this.idUsuNew);
         txtIdBanco.setText(this.idBcoNew);
         this.setVisible(true);
+        botguardar();
         
         // this.setVisible(true);
     }
@@ -354,7 +372,6 @@ public class AgreModCuenta extends javax.swing.JFrame {
     private javax.swing.JButton botBuscUsuario;
     private javax.swing.JButton botCancelar;
     private javax.swing.JButton botGuardar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -364,6 +381,7 @@ public class AgreModCuenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labTitulo;
     private javax.swing.JTextField txtIdBanco;
     private javax.swing.JTextField txtIdUsuario;
     private javax.swing.JTextField txtSaldo;

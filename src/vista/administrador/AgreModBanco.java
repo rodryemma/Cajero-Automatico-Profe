@@ -46,7 +46,7 @@ public class AgreModBanco extends javax.swing.JFrame {
         botGuardar = new javax.swing.JButton();
         botCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -180,12 +180,15 @@ public class AgreModBanco extends javax.swing.JFrame {
         //asignamos agregar a la bandera para saber que se agregara una nueva celda a la tabla
         this.bandera = "agregar";
         this.tabUsuario = tabusuario;
+        labTitulo.setText("Agregar banco");
     }
 
     public void modBanco(DefaultTableModel tabusuario, DefaultTableModel tabBanco, int fila) {
         //asignamos agregar a la bandera para saber que se modificara una nueva celda seleccionada
         this.bandera = "modificar";
         this.tabUsuario = tabusuario;
+        
+         labTitulo.setText("Modificar banco");
 
         //guardamos el id de la celda seleccionada del banco
         this.idBanco = tabBanco.getValueAt(fila, 0).toString();

@@ -49,7 +49,7 @@ public class AgreModUsuario extends javax.swing.JFrame {
         botGuardar = new javax.swing.JButton();
         botCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -219,10 +219,12 @@ public class AgreModUsuario extends javax.swing.JFrame {
     public void agreUsuario(DefaultTableModel tabUsuari) {
         this.tabUsuario = tabUsuari;
         this.bandera = "agregar";
+        labTItulo.setText("Agregar usuario");
 
     }
 
     public void modUsuario(DefaultTableModel tabUsuarioCom, DefaultTableModel tabUsu, int fila) {
+        labTItulo.setText("Modificar usuario");
         this.bandera = "modificar";
         this.tabUsuario = tabUsu;
         this.tabUsuarioCom = tabUsuarioCom;

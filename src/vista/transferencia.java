@@ -85,7 +85,7 @@ public class transferencia extends javax.swing.JFrame {
 
         jLabel4.setText("jLabel4");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Monto a transferir");
 
@@ -430,7 +430,7 @@ public class transferencia extends javax.swing.JFrame {
         String idcuen=tabCuenta.getValueAt(0, 9).toString();
         String idusuario=tabusuario.getValueAt(0, 0).toString();
         String idbanco=tabCuenta.getValueAt(0, 19).toString();
-        String detalle =txtDetalle.getText().toString();
+        String detalle = txtDetalle.getText().toString();
         Double sueldo = Double.parseDouble(tabCuenta.getValueAt(0,11).toString());
         Double transf = Double.parseDouble(txtMontoTrans.getText().toString());
         
@@ -441,12 +441,15 @@ public class transferencia extends javax.swing.JFrame {
         }else{
             Double act = sueldo-transf;
             String NuevoSaldo = String.valueOf(act);
+            String SaldoTransf = String.valueOf(transf);
             modTabla.modiCuentaSaldo(idusuario, idbanco, NuevoSaldo);
             JOptionPane.showMessageDialog(null, "Transferencia Exitosa ");
             
-            agregTab.AgregarTransferencia(idcuen, idDestinatario, fecha(), NuevoSaldo, detalle);
-            
-            
+            agregTab.AgregarTransferencia(idcuen, idDestinatario, fecha(), SaldoTransf, detalle);
+            dispose();
+            inicio ini = new inicio();
+            ini.iniciatxt(tabusuario);
+            ini.setVisible(true);
         }
         
        // System.out.println("Sueldo: "+sueldo+" - Transferir: "+transf);

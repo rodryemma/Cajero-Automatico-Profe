@@ -205,11 +205,16 @@ public class login extends javax.swing.JFrame {
                     iniAdm.setVisible(true);
                     iniAdm.cargar(listausuario);
                 }else{
+                    if(listausuario.getValueAt(0, 3).toString().equals("true")){
+                        JOptionPane.showMessageDialog(this, "Cuenta n°: "+ listausuario.getValueAt(0, 0).toString()+" bloqueada. Por favor Comunicarse con gestion" );
+                    cerrarPrograma();
+                        
+                    }else{
                      this.setVisible(false);
                      inicio ini = new inicio();
                      ini.setVisible(true);
                      ini.iniciatxt(listausuario);
-                    
+                    }
                 }
                 
             } else {

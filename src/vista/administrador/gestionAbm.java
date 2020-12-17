@@ -118,6 +118,11 @@ public class gestionAbm extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         botVolver.setText("Volver");
+        botVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -398,6 +403,13 @@ public class gestionAbm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_botModificarActionPerformed
+
+    private void botVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botVolverActionPerformed
+        
+        
+        
+        dispose();
+    }//GEN-LAST:event_botVolverActionPerformed
 
     /**
      * @param args the command line arguments
